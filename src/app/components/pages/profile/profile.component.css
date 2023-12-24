@@ -44,10 +44,6 @@
 .info__adress {
   max-width: 100px;
 }
-
-.info__bottom {
-}
-
 .profile__buttons {
   display: flex;
   flex-flow: row nowrap;

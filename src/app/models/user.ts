@@ -4,6 +4,7 @@ export interface User {
   password: string;
   registrationDate: string;
   email: string;
-  phoneNumber: string | null;
-  adress: string | null;
+  roleId: number;
+
+  readerId: number | null;
 }

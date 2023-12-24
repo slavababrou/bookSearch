@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { User } from '../../../models/user';
+import { Reader } from '../../../models/reader';
+import { ReaderService } from '../../../services/reader.service';
 
 @Component({
   selector: 'app-login',
@@ -19,19 +22,30 @@ export class LoginComponent implements OnDestroy {
 
   destrouSubject = new Subject<void>();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private readerService: ReaderService
+  ) {}
 
   login() {
     this.authService
       .login(this.username, this.password)
       .pipe(takeUntil(this.destrouSubject))
-      .subscribe((response: any) => {
-        if (response && response.token && response.user) {
-          localStorage.setItem('accessToken', response.token);
-          this.authService.setUser(response.user);
-          this.router.navigate(['/']);
+      .subscribe(
+        (response: {
+          token: string;
+          user: User;
+          reader: Reader | undefined;
+        }) => {
+          if (response && response.token && response.user) {
+            localStorage.setItem('accessToken', response.token);
+            this.authService.setUser(response.user);
+
+            if (response.reader) this.readerService.setReader(response.reader);
+          }
         }
-      });
+      );
   }
 
   ngOnDestroy(): void {

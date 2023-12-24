@@ -2,7 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { ReaderService } from './services/reader.service';
 import { Subject, takeUntil } from 'rxjs';
+import { User } from './models/user';
+import { Reader } from './models/reader';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +15,10 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private readerService: ReaderService
+  ) {}
 
   destroySubject = new Subject<void>();
 
@@ -20,10 +26,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authService
       .autoLogin()
       ?.pipe(takeUntil(this.destroySubject))
-      .subscribe((response: any) => {
-        if (response) {
-          this.authService.setUser(response);
+      .subscribe((response: { user: User; reader: Reader | undefined }) => {
+        if (response.user) {
+          this.authService.setUser(response.user);
         }
+        if (response.reader) this.readerService.setReader(response.reader);
       });
   }
 

@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { ReaderService } from '../../../services/reader.service';
+import { User } from '../../../models/user';
+import { Reader } from '../../../models/reader';
 
 @Component({
   selector: 'app-register',
@@ -20,16 +23,21 @@ export class RegisterComponent implements OnDestroy {
 
   destrouSubject = new Subject<void>();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private readerService: ReaderService
+  ) {}
 
   register() {
     this.authService
       .register(this.username, this.email, this.password)
       .pipe(takeUntil(this.destrouSubject))
-      .subscribe((response: any) => {
-        if (response && response.token && response.user) {
+      .subscribe((response: { token: string; user: User; reader: Reader }) => {
+        if (response && response.token && response.user && response.reader) {
           localStorage.setItem('accessToken', response.token);
           this.authService.setUser(response.user);
+          this.readerService.setReader(response.reader);
           this.router.navigate(['/']);
         }
       });
