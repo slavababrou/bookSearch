@@ -6,15 +6,21 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { FavouritesComponent } from './components/pages/favourites/favourites.component';
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 import { AboutComponent } from './components/pages/about/about.component';
+import { LayoutComponent } from './components/layout/layout/layout.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
 
-  { path: '', component: HomeComponent },
-
-  { path: 'profile', component: ProfileComponent },
-  { path: 'favourites', component: FavouritesComponent },
-  { path: 'catalog', component: CatalogComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'favourites', component: FavouritesComponent },
+      { path: 'catalog', component: CatalogComponent },
+      { path: 'about', component: AboutComponent },
+    ],
+  },
 ];

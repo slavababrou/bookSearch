@@ -1,27 +1,32 @@
-<app-layout
-  ><div class="profile">
-    <section class="profile__section">
-      <img src="" alt="" />
-
-      <h3>user name</h3>
-
-      <div>
-        <div>
-          <span>Email:</span><span>emailmail.ru</span><span>Adress</span
-          ><span>adress</span>
-        </div>
-        <div>
-          <span>Email:</span><span>emailmail.ru</span><span>Adress</span
-          ><span>adress</span>
-        </div>
+<div class="profile">
+  <div class="profile__top">
+    <div class="profile__info_left">
+      <div class="info__wrapper">
+        <span class="info__title">Дата регистрации</span
+        ><span>{{ user?.registrationDate | date : "dd-MM-yyyy" }}</span>
       </div>
-
-      <div class="profile__buttons">
-        <button>Редактировать</button>
-        <button (click)="logout()">Выход</button>
+      <div class="info__wrapper">
+        <span class="info__title">Номер телефона</span
+        ><span>{{ user?.phoneNumber || "Не задан" }}</span>
       </div>
-    </section>
-
-    <main>booklist=>></main>
+    </div>
+    <div class="profile__avatar"></div>
+    <div class="profile__info_right">
+      <div class="info__wrapper">
+        <span class="info__title">Email</span><span>{{ user?.email }}</span>
+      </div>
+      <div class="info__wrapper">
+        <span class="info__title">Адрес</span
+        ><span class="info__adress">{{ user?.adress || "Не задан" }}</span>
+      </div>
+    </div>
   </div>
-</app-layout>
+
+  <div class="profile__bottom">
+    <div class="profile__buttons">
+      <button>Изменить пароль</button>
+      <button>Редактировать</button>
+      <button (click)="logout()">Выйти</button>
+    </div>
+  </div>
+</div>

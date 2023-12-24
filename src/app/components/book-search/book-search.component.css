@@ -12,7 +12,7 @@
 .book-search__form_button {
   width: 14px;
   height: 14px;
-  background: url("../../assets/image/search.svg") center center no-repeat;
+  background: url("../../../assets/image/search.svg") center center no-repeat;
   background-size: cover;
 }
 

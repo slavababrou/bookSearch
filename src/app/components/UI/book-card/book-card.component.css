@@ -7,7 +7,7 @@
   border-radius: 2px;
 }
 .book_img {
-  background: url("../../assets/image/book.png") no-repeat center;
+  background: url("../../../../assets/image/book.png") no-repeat center;
   background-size: cover;
   height: 190px;
   width: 130px;

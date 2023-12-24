@@ -41,7 +41,7 @@
 
 .header__profile {
   display: block;
-  background: url("../../assets/image/header_avatar.png") no-repeat center;
+  background: url("../../../../assets/image/header_avatar.png") no-repeat center;
   background-size: cover;
   width: 60px;
   height: 60px;
@@ -75,7 +75,7 @@
 }
 .header__favourites {
   display: block;
-  background: url("../../assets/image/heart.svg") no-repeat center;
+  background: url("../../../../assets/image/heart.svg") no-repeat center;
   background-size: cover;
   width: 38px;
   height: 38px;

@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../../UI/header/header.component';
-import { FooterComponent } from '../../UI/footer/footer.component';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { LayoutComponent } from '../../layout/layout/layout.component';
+import { User } from '../../../models/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, LayoutComponent],
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  user: User | null = null;
+
   constructor(private authService: AuthService) {}
 
   logout() {
-    console.log('log');
     this.authService.logout();
+  }
+
+  ngOnInit(): void {
+    this.user = this.authService.getUser();
   }
 }
