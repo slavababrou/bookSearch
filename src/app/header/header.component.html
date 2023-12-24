@@ -1,0 +1,35 @@
+<div class="header__wrapper">
+  <nav class="header__nav">
+    <ul>
+      <div class="header__nav_first-wrapper">
+        <a routerLink="/">
+          <div class="header__logo">
+            <img src="../../assets/image/logo.svg" alt="logo" />
+            <div class="header__logo_text">
+              <span class="header__logo_text_top">БИБЛИОТЕЧНАЯ</span>
+              <span class="header__logo_text_bottom">КНИЖНЫЙ МАГАЗИН</span>
+            </div>
+          </div>
+        </a>
+        <li><a routerLink="/catalog">Каталлог</a></li>
+        <li><a routerLink="/about">О библиотеке</a></li>
+      </div>
+
+      <app-book-search></app-book-search>
+
+      <div class="header__nav_second-wrapper">
+        <li *ngIf="!authService.isLoggedIn()">
+          <a routerLink="/register">Регистрация</a>
+        </li>
+
+        <li *ngIf="authService.isLoggedIn()">
+          <a class="header__favourites" routerLink="/favourites"></a>
+        </li>
+
+        <li *ngIf="authService.isLoggedIn()">
+          <a class="header__profile" routerLink="/profile"></a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+</div>

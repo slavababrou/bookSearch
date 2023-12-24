@@ -1,0 +1,16 @@
+<div class="book-search">
+  <form action="" class="book-search__form">
+    <button class="book-search__form_button"></button>
+    <input
+      (input)="onInput($event)"
+      class="book-search__form_input"
+      type="text"
+      placeholder="Поиск"
+    />
+  </form>
+  <div class="book-search__results" *ngIf="books.length > 0">
+    <div class="results_item" *ngFor="let book of books">
+      <app-book-card [book]="book"></app-book-card>
+    </div>
+  </div>
+</div>

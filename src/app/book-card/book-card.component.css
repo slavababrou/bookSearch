@@ -1,0 +1,44 @@
+.book {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 20px 20px;
+  background: white;
+  color: #1976d2;
+  border-radius: 2px;
+}
+.book_img {
+  background: url("../../assets/image/book.png") no-repeat center;
+  background-size: cover;
+  height: 190px;
+  width: 130px;
+  margin-bottom: 40px;
+}
+.book_title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.book_author {
+  margin-bottom: 3px;
+}
+.book_publisher {
+  margin-bottom: 14px;
+}
+.btns_wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 3px;
+}
+.btn_available {
+  background: #1976d2;
+  padding: 2px 18px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  height: 30px;
+  font-weight: bold;
+}
+.btns_wrapper svg {
+  height: 34px;
+  width: auto;
+}

@@ -1,0 +1,28 @@
+<div class="login">
+  <form class="login__form" (ngSubmit)="register()">
+    <h2>Регистрация</h2>
+    <div class="login__form_fields">
+      <input
+        [(ngModel)]="username"
+        name="username"
+        type="text"
+        placeholder="Имя пользователя"
+      />
+      <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="Пароль"
+      />
+    </div>
+    <div class="login__form_bottom">
+      <button type="submit" class="login__form_button">
+        Зарегестрироваться
+      </button>
+      <span class="login__form_no-account"
+        >Есть аккаунт? <a routerLink="/login">Войти</a></span
+      >
+    </div>
+  </form>
+</div>

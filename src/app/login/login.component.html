@@ -1,0 +1,25 @@
+<div class="login">
+  <form class="login__form" (ngSubmit)="login()">
+    <h2>Авторизация</h2>
+    <div class="login__form_fields">
+      <input
+        [(ngModel)]="username"
+        name="username"
+        type="text"
+        placeholder="Имя пользователя"
+      />
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="Пароль"
+      />
+    </div>
+    <div class="login__form_bottom">
+      <button type="submit" class="login__form_button">Войти</button>
+      <span class="login__form_no-account"
+        >Нет аккаунта? <a routerLink="/register">Регистрация</a></span
+      >
+    </div>
+  </form>
+</div>
