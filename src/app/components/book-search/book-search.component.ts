@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { BookService } from '../book.service';
-import { BookCardComponent } from '../book-card/book-card.component';
-import { Book } from '../book';
+import { BookService } from '../../services/book.service';
+import { BookCardComponent } from '../UI/book-card/book-card.component';
+import { Book } from '../../models/book';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

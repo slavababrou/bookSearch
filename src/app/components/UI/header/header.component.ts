@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BookSearchComponent } from '../book-search/book-search.component';
-import { AuthService } from '../auth.service';
+import { BookSearchComponent } from '../../book-search/book-search.component';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

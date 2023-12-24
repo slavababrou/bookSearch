@@ -1,4 +1,4 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,24 +7,23 @@ import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterLink],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
-export class RegisterComponent implements OnDestroy {
+export class LoginComponent implements OnDestroy {
   username: string = '';
-  email: string = '';
   password: string = '';
 
   destrouSubject = new Subject<void>();
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  register() {
+  login() {
     this.authService
-      .register(this.username, this.email, this.password)
+      .login(this.username, this.password)
       .pipe(takeUntil(this.destrouSubject))
       .subscribe((response: any) => {
         if (response && response.token && response.user) {

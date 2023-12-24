@@ -7,7 +7,6 @@
   --text-color: #5d5fef;
   --text-color-light: #ffffff;
 }
-@import "angular-toastify";
 
 /* Reset and base styles  */
 * {
