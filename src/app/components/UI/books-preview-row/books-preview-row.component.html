@@ -1,0 +1,6 @@
+<div class="books-preview">
+  <h2 class="books-preview__title">{{ title || " " }}</h2>
+  <div class="books-preview__book-wrapper">
+    <app-book-card [book]="book" *ngFor="let book of books"></app-book-card>
+  </div>
+</div>

@@ -1,1 +1,10 @@
-<div>home</div>
+<app-books-preview-row
+  *ngIf="newBooks"
+  [title]="'Новые книги'"
+  [books]="newBooks"
+></app-books-preview-row>
+<app-books-preview-row
+  *ngIf="popularBooks"
+  [title]="'Популярные книги'"
+  [books]="popularBooks"
+></app-books-preview-row>

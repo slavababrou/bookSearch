@@ -1,0 +1,84 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Информация о читателе</h2>
+    <form class="modal-content__form" (submit)="submitHandler()">
+      <div class="form__name">
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="Имя"
+          [(ngModel)]="updatedReader.firstName"
+        />
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Фамилия"
+          [(ngModel)]="updatedReader.lastName"
+        />
+        <input
+          type="text"
+          id="middleName"
+          name="middleName"
+          placeholder="Отчество"
+          [(ngModel)]="updatedReader.middleName"
+        />
+      </div>
+
+      <div class="form__age-male">
+        <div>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            [(ngModel)]="updatedReader.age"
+            placeholder="Возраст"
+          />
+        </div>
+        <div class="form__age-male_male">
+          <label for="male">Пол:</label>
+          <div class="radio-container">
+            <input
+              type="radio"
+              id="male"
+              name="male"
+              value="М"
+              [(ngModel)]="updatedReader.male"
+            />
+            <label for="male">М</label>
+          </div>
+          <div class="radio-container">
+            <input
+              type="radio"
+              id="female"
+              name="male"
+              value="Ж"
+              [(ngModel)]="updatedReader.male"
+            />
+            <label for="female">Ж</label>
+          </div>
+        </div>
+        <div class="form__age-male_border"></div>
+      </div>
+      <div class="form__number-adress">
+        <label for="phoneNumber">Номер телефона:</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          [(ngModel)]="updatedReader.phoneNumber"
+        />
+        <label for="adress">Адрес:</label>
+        <input
+          type="text"
+          id="adress"
+          name="adress"
+          [(ngModel)]="updatedReader.adress"
+        />
+      </div>
+
+      <button type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>

@@ -21,6 +21,7 @@
   width: 240px;
   height: 300px;
   border-radius: 30%;
+  align-self: center;
 }
 
 .profile__info_left,
@@ -59,4 +60,14 @@
 
 .profile__buttons button:hover {
   background: var(--background-color-dark);
+}
+.profile__avatar-name {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.profile__reader_name {
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: var(--text-color);
 }

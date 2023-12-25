@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Reader } from '../models/reader';
 
 @Injectable({
@@ -26,5 +25,9 @@ export class ReaderService {
 
   createReader(userId: number) {
     return this.http.post<Reader>(`${this.apiUrl}`, { userId });
+  }
+
+  updateReader(reader: Reader) {
+    return this.http.put<Reader>(`${this.apiUrl}`, reader);
   }
 }

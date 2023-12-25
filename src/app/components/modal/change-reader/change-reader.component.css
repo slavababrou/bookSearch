@@ -1,0 +1,131 @@
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--text-color);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 50%;
+  min-width: 800px;
+  gap: 30px;
+}
+
+.modal-content h2 {
+  align-self: center;
+}
+.modal-content form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 30px;
+}
+.modal-content form input {
+  padding: 10px 20px;
+  border: 1px solid var(--background-color);
+}
+.modal-content form button {
+  padding: 12px 15px;
+  background: var(--background-color);
+  color: var(--text-color-light);
+  font-size: 16px;
+}
+
+.form__number-adress {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.form__number-adress input {
+  margin-bottom: 10px;
+}
+.form__name,
+.form__age-male {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.form__name {
+  justify-content: space-between;
+}
+
+/* Закрыть кнопку */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form__age-male {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 9%;
+}
+.form__age-male_male {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 15px;
+}
+.form__age-male_male label {
+  font-size: 16px;
+}
+.radio-container {
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-container label {
+  position: relative;
+  padding-left: 20px;
+}
+
+.radio-container label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.radio-container input:checked ~ label:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--background-color);
+}

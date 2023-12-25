@@ -6,14 +6,26 @@
         ><span>{{ user?.registrationDate | date : "dd-MM-yyyy" }}</span>
       </div>
       <div class="info__wrapper">
-        <span class="info__title">Номер телефона</span
-        ><span>{{ reader?.phoneNumber || "Не задан" }}</span>
+        <span class="info__title">Email</span><span>{{ user?.email }}</span>
       </div>
     </div>
-    <div class="profile__avatar"></div>
+    <div class="profile__avatar-name">
+      <div class="profile__avatar"></div>
+      <h3 class="profile__reader_name">
+        {{
+          (reader?.lastName || "") +
+            " " +
+            (reader?.firstName || "") +
+            " " +
+            (reader?.middleName || "")
+        }}
+      </h3>
+    </div>
+
     <div class="profile__info_right">
       <div class="info__wrapper">
-        <span class="info__title">Email</span><span>{{ user?.email }}</span>
+        <span class="info__title">Номер телефона</span
+        ><span>{{ reader?.phoneNumber || isModalOpen }}</span>
       </div>
       <div class="info__wrapper">
         <span class="info__title">Адрес</span
@@ -25,8 +37,13 @@
   <div class="profile__bottom">
     <div class="profile__buttons">
       <button>Изменить пароль</button>
-      <button>Редактировать</button>
+      <button (click)="openModal()">Редактировать</button>
       <button (click)="logout()">Выйти</button>
     </div>
   </div>
+
+  <app-change-reader
+    *ngIf="isModalOpen"
+    [closeModal]="closeModal"
+  ></app-change-reader>
 </div>

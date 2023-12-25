@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class BookSearchComponent implements OnDestroy {
   books: Book[] = [];
-  destrouSubject = new Subject<void>();
+  destroySubject = new Subject<void>();
   constructor(private bookService: BookService) {}
 
   onInput(event: Event) {
@@ -24,16 +24,15 @@ export class BookSearchComponent implements OnDestroy {
     if (query)
       this.bookService
         .searchBooks(query)
-        .pipe(takeUntil(this.destrouSubject))
+        .pipe(takeUntil(this.destroySubject))
         .subscribe((results) => {
           this.books = results;
-          console.log(results);
         });
     else this.books = [];
   }
 
   ngOnDestroy(): void {
-    this.destrouSubject.next();
-    this.destrouSubject.complete();
+    this.destroySubject.next();
+    this.destroySubject.complete();
   }
 }
