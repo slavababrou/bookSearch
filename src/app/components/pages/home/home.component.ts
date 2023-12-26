@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((popularBooks) => {
         if (popularBooks.length) this.popularBooks = popularBooks;
       });
+
+    console.log(this.newBooks);
   }
 
   ngOnDestroy(): void {
