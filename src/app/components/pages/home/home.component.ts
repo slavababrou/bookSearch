@@ -5,11 +5,17 @@ import { Book } from '../../../models/book';
 import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CatalogSectionComponent } from '../../UI/catalog-section/catalog-section.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BooksPreviewRowComponent, CommonModule, RouterLink],
+  imports: [
+    BooksPreviewRowComponent,
+    CommonModule,
+    RouterLink,
+    CatalogSectionComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
