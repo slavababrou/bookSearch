@@ -7,9 +7,9 @@
 }
 
 .books-preview__title {
-  font-size: 24px;
+  font-size: 25px;
   color: var(--text-color);
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .books-preview__book-wrapper {

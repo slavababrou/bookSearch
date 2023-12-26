@@ -1,10 +1,24 @@
-<app-books-preview-row
-  *ngIf="newBooks"
-  [title]="'Новые книги'"
-  [books]="newBooks"
-></app-books-preview-row>
-<app-books-preview-row
-  *ngIf="popularBooks"
-  [title]="'Популярные книги'"
-  [books]="popularBooks"
-></app-books-preview-row>
+<main class="main">
+  <div class="main__left">
+    <h2>Книги от А до Я</h2>
+    <span
+      >В нашем магазине можно найти книгу на любой вкус. Большой ассортимент.
+      Приятные цены. Интересные сюжеты.</span
+    >
+    <a routerLink="/catalog"><button>Перейти в каталог</button></a>
+  </div>
+  <div class="main__right"><div class="main__right_img"></div></div>
+</main>
+
+<section class="books-rows">
+  <app-books-preview-row
+    *ngIf="newBooks"
+    [title]="'Новые книги'"
+    [books]="newBooks"
+  ></app-books-preview-row>
+  <app-books-preview-row
+    *ngIf="popularBooks"
+    [title]="'Популярные книги'"
+    [books]="popularBooks"
+  ></app-books-preview-row>
+</section>

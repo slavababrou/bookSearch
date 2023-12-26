@@ -3,12 +3,13 @@ import { BooksPreviewRowComponent } from '../../UI/books-preview-row/books-previ
 import { BooksService } from '../../../services/books.service';
 import { Book } from '../../../models/book';
 import { Subject, takeUntil } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BooksPreviewRowComponent, CommonModule],
+  imports: [BooksPreviewRowComponent, CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

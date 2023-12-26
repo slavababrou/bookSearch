@@ -1,0 +1,57 @@
+.main {
+  padding: 160px 10% 300px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__left {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  width: 30%;
+}
+.main__right {
+  width: 40%;
+  display: flex;
+}
+.main__left h2 {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 900;
+  color: var(--text-color);
+}
+.main__left span {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  color: black;
+  line-height: 190%;
+}
+
+.main__left button {
+  padding: 15px 15px;
+  color: var(--text-color-light);
+  background: var(--background-color);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 900;
+  width: 200px;
+}
+
+.main__right_img {
+  background: url("../../../../assets/image/main_right_books.png") 50% / cover
+    no-repeat;
+  width: 462px;
+  height: 260px;
+  align-self: center;
+}
+
+.books-rows {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 20vh;
+  gap: 15vh;
+}
