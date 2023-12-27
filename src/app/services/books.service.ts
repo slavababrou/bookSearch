@@ -7,11 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BooksService {
-  private newBooks: Book[] | null = null;
-  private popularBooks: Book[] | null = null;
+  private newBooks: Book[] | undefined;
+  private popularBooks: Book[] | undefined;
+  private sameBooks: Book[] | undefined;
 
   private newBookApiUrl = 'http://localhost:3192/api/new-book';
   private popularBookApiUrl = 'http://localhost:3192/api/popular-book';
+  private sameBookApiUrl = 'http://localhost:3192/api/same-book';
 
   constructor(private http: HttpClient) {}
 
@@ -21,11 +23,17 @@ export class BooksService {
   setPopularBooks(books: Book[]) {
     this.popularBooks = books;
   }
+  setSameBooks(books: Book[]) {
+    this.sameBooks = books;
+  }
   getNewBooks() {
     return this.newBooks;
   }
   getPopularBooks() {
     return this.popularBooks;
+  }
+  getSameBooks() {
+    return this.sameBooks;
   }
 
   fetchNewBooks() {
@@ -38,6 +46,15 @@ export class BooksService {
   }
 
   fetchPopularBooks() {
+    return this.http.get<Book[]>(`${this.popularBookApiUrl}`, {
+      params: {
+        limit: 5,
+        page: 1,
+      },
+    });
+  }
+
+  fetchSameBooks() {
     return this.http.get<Book[]>(`${this.popularBookApiUrl}`, {
       params: {
         limit: 5,

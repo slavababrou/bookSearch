@@ -2,26 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Reader } from '../models/reader';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private user: User | null = null;
+  private user = new BehaviorSubject<User | null>(null);
   private apiUrl = 'http://localhost:3192/api/user';
 
   constructor(private http: HttpClient) {}
 
   setUser(user: User) {
-    this.user = user;
+    this.user.next(user);
   }
 
   getUser() {
-    return this.user;
+    return this.user.asObservable();
   }
 
   isLoggedIn() {
-    return !!this.user;
+    return !!this.user.getValue();
   }
 
   login(username: string, password: string) {
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   logout() {
-    this.user = null;
+    this.user.next(null);
     localStorage.clear();
   }
 

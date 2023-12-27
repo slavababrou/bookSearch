@@ -1,28 +1,29 @@
 <div class="modal">
   <div class="modal-content">
     <h2>Информация о читателе</h2>
-    <form class="modal-content__form" (submit)="submitHandler()">
+    <form
+      [formGroup]="readerForm"
+      (ngSubmit)="submitHandler()"
+      class="modal-content__form"
+    >
       <div class="form__name">
         <input
           type="text"
           id="firstName"
-          name="firstName"
           placeholder="Имя"
-          [(ngModel)]="updatedReader.firstName"
+          formControlName="firstName"
         />
         <input
           type="text"
           id="lastName"
-          name="lastName"
+          formControlName="lastName"
           placeholder="Фамилия"
-          [(ngModel)]="updatedReader.lastName"
         />
         <input
           type="text"
           id="middleName"
-          name="middleName"
+          formControlName="middleName"
           placeholder="Отчество"
-          [(ngModel)]="updatedReader.middleName"
         />
       </div>
 
@@ -31,31 +32,18 @@
           <input
             type="number"
             id="age"
-            name="age"
-            [(ngModel)]="updatedReader.age"
+            formControlName="age"
             placeholder="Возраст"
           />
         </div>
         <div class="form__age-male_male">
           <label for="male">Пол:</label>
           <div class="radio-container">
-            <input
-              type="radio"
-              id="male"
-              name="male"
-              value="М"
-              [(ngModel)]="updatedReader.male"
-            />
+            <input type="radio" id="male" formControlName="male" value="М" />
             <label for="male">М</label>
           </div>
           <div class="radio-container">
-            <input
-              type="radio"
-              id="female"
-              name="male"
-              value="Ж"
-              [(ngModel)]="updatedReader.male"
-            />
+            <input type="radio" id="female" formControlName="male" value="Ж" />
             <label for="female">Ж</label>
           </div>
         </div>
@@ -63,19 +51,9 @@
       </div>
       <div class="form__number-adress">
         <label for="phoneNumber">Номер телефона:</label>
-        <input
-          type="tel"
-          id="phoneNumber"
-          name="phoneNumber"
-          [(ngModel)]="updatedReader.phoneNumber"
-        />
+        <input type="tel" id="phoneNumber" formControlName="phoneNumber" />
         <label for="adress">Адрес:</label>
-        <input
-          type="text"
-          id="adress"
-          name="adress"
-          [(ngModel)]="updatedReader.adress"
-        />
+        <input type="text" id="adress" formControlName="adress" />
       </div>
 
       <button type="submit">Сохранить</button>

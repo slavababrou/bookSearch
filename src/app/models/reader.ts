@@ -1,6 +1,6 @@
 export interface Reader {
-  id: number;
-  userId: number;
+  id?: number;
+  userId?: number;
   firstName: string | null;
   lastName: string | null;
   middleName: string | null;

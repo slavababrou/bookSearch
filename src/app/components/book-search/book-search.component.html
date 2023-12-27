@@ -2,7 +2,10 @@
   <form action="" class="book-search__form">
     <button class="book-search__form_button"></button>
     <input
-      (input)="onInput($event)"
+      [(ngModel)]="query"
+      [ngModelOptions]="{ standalone: true }"
+      (blur)="onBlur()"
+      (ngModelChange)="onInput()"
       class="book-search__form_input"
       type="text"
       placeholder="Поиск"

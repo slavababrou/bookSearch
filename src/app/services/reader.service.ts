@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Reader } from '../models/reader';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReaderService {
-  private reader: Reader | null = null;
+  private reader = new BehaviorSubject<Reader | null>(null);
   private apiUrl = 'http://localhost:3192/api/reader';
 
   constructor(private http: HttpClient) {}
 
   setReader(reader: Reader) {
-    this.reader = reader;
+    this.reader.next(reader);
   }
 
   getReader() {
-    return this.reader;
+    return this.reader.asObservable();
   }
 
   logoutReader() {
-    this.reader = null;
+    this.reader.next(null);
   }
 
   createReader(userId: number) {

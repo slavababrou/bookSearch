@@ -7,6 +7,7 @@ import { FavouritesComponent } from './components/pages/favourites/favourites.co
 import { CatalogComponent } from './components/pages/catalog/catalog.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { LayoutComponent } from './components/layout/layout/layout.component';
+import { BookComponent } from './components/pages/book/book.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'favourites', component: FavouritesComponent },
       { path: 'catalog', component: CatalogComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'book/:id', component: BookComponent },
     ],
   },
 ];

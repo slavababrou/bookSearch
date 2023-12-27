@@ -40,6 +40,9 @@
   font-weight: 900;
   width: 200px;
 }
+.main__left button:hover {
+  background: var(--background-color-dark);
+}
 
 .main__right_img {
   background: url("../../../../assets/image/main_right_books.png") 50% / cover

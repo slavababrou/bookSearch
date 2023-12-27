@@ -1,34 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { BookCardComponent } from '../UI/book-card/book-card.component';
 import { Book } from '../../models/book';
 import { Subject, takeUntil } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book-search',
   standalone: true,
-  imports: [CommonModule, BookCardComponent],
+  imports: [CommonModule, BookCardComponent, FormsModule],
   templateUrl: './book-search.component.html',
   styleUrl: './book-search.component.css',
 })
 export class BookSearchComponent implements OnDestroy {
   books: Book[] = [];
   destroySubject = new Subject<void>();
+  @Input() query: string = '';
+
   constructor(private bookService: BookService) {}
 
-  onInput(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const query = target.value;
-
-    if (query)
+  onInput() {
+    if (this.query)
       this.bookService
-        .searchBooks(query)
+        .searchBooks(this.query)
         .pipe(takeUntil(this.destroySubject))
         .subscribe((results) => {
           this.books = results;
         });
     else this.books = [];
+  }
+
+  onBlur() {
+    this.books = [];
+    this.query = '';
   }
 
   ngOnDestroy(): void {
