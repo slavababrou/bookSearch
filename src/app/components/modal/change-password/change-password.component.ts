@@ -31,14 +31,20 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const [oldPassword, newFirstPassword, newSecondPassword] =
+    const { oldPassword, newFirstPassword, newSecondPassword } =
       this.changePasswordForm.value;
+
     this.authService
       .changePassword(oldPassword, newFirstPassword, newSecondPassword)
       ?.pipe(takeUntil(this.destroySubject))
-      .subscribe((isSuccsess) => {
-        alert(isSuccsess);
-        this.modalService.closeModal();
+      .subscribe({
+        next: (response) => {
+          alert(response?.message);
+          this.modalService.closeModal();
+        },
+        error: (err) => {
+          alert(err.error.message);
+        },
       });
   }
 

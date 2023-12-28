@@ -26,9 +26,9 @@
   height: 300px;
   border-radius: 16px;
   align-self: center;
-  border: 2px solid white;
+  border: 1px solid rgba(255, 255, 255);
 }
-.profile__info_left,
+.info_left_user-info,
 .profile__info_right {
   display: flex;
   flex-flow: column nowrap;
@@ -37,8 +37,13 @@
   backdrop-filter: blur(52px);
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.548);
+  border: 1px solid rgba(255, 255, 255);
   font-size: 13px;
+}
+.profile__info_left {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 30px;
 }
 
 .info__wrapper {
@@ -100,5 +105,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255);
 }

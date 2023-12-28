@@ -53,12 +53,11 @@
   font-size: 16px;
   font-weight: bold;
   box-sizing: border-box;
+  border: 2px solid white;
 }
 .login__form_button:hover {
-  border: 2px solid white;
   background: rgba(49, 51, 136, 0.21);
   color: var(--text-color-light);
-  padding: 8px 6px 8px;
 }
 
 .login__form_bottom {

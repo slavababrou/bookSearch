@@ -1,12 +1,30 @@
 <div class="profile">
   <div class="profile__top">
     <div class="profile__info_left">
-      <div class="info__wrapper">
-        <span class="info__title">Дата регистрации</span
-        ><span>{{ user?.registrationDate | date : "dd-MM-yyyy" }}</span>
+      <div>
+        <div
+          *ngIf="reader?.lastName || reader?.firstName || reader?.middleName"
+          class="profile__reader_name-wrapper"
+        >
+          <h3 class="profile__reader_name">
+            {{
+              (reader?.lastName || "") +
+                " " +
+                (reader?.firstName || "") +
+                " " +
+                (reader?.middleName || "")
+            }}
+          </h3>
+        </div>
       </div>
-      <div class="info__wrapper">
-        <span class="info__title">Email</span><span>{{ user?.email }}</span>
+      <div class="info_left_user-info">
+        <div class="info__wrapper">
+          <span class="info__title">Дата регистрации</span
+          ><span>{{ user?.registrationDate | date : "dd-MM-yyyy" }}</span>
+        </div>
+        <div class="info__wrapper">
+          <span class="info__title">Email</span><span>{{ user?.email }}</span>
+        </div>
       </div>
     </div>
     <div class="profile__avatar-name">
@@ -32,19 +50,6 @@
       </div>
     </div>
   </div>
-  <div>
-    <div class="profile__reader_name-wrapper">
-      <h3 class="profile__reader_name">
-        {{
-          (reader?.lastName || "") +
-            " " +
-            (reader?.firstName || "") +
-            " " +
-            (reader?.middleName || "")
-        }}
-      </h3>
-    </div>
-  </div>
 
   <div class="profile__bottom">
     <div class="profile__buttons">
@@ -55,5 +60,5 @@
   </div>
 
   <app-change-reader *ngIf="isModalOpen"></app-change-reader>
-  <app-change-password *ngIf="isModalOpen"></app-change-password>
+  <!-- <app-change-password *ngIf="isModalOpen"></app-change-password> -->
 </div>

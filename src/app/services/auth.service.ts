@@ -73,8 +73,8 @@ export class AuthService {
     const token: string | null = localStorage.getItem('accessToken');
     if (token) {
       const headers = { Authorization: `Bearer ${token}` };
-      return this.http.put<{ response: string }>(
-        `${this.apiUrl}`,
+      return this.http.put<{ message: string }>(
+        `${this.apiUrl}/updatePassword`,
         { oldPassword, newFirstPassword, newSecondPassword },
         {
           headers,

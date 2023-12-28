@@ -52,14 +52,13 @@
   border-radius: 8px;
   padding: 10px 6px;
   font-size: 16px;
+  border: 2px solid white;
   font-weight: bold;
   box-sizing: border-box;
 }
 .login__form_button:hover {
-  border: 2px solid white;
   background: rgba(49, 51, 136, 0.21);
   color: var(--text-color-light);
-  padding: 9px 6px 7px;
 }
 
 .login__form_bottom {
