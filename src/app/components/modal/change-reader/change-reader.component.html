@@ -27,36 +27,44 @@
         />
       </div>
 
-      <div class="form__age-male">
-        <div>
-          <input
-            type="number"
-            id="age"
-            formControlName="age"
-            placeholder="Возраст"
-          />
-        </div>
-        <div class="form__age-male_male">
-          <label for="male">Пол:</label>
-          <div class="radio-container">
-            <input type="radio" id="male" formControlName="male" value="М" />
-            <label for="male">М</label>
-          </div>
-          <div class="radio-container">
-            <input type="radio" id="female" formControlName="male" value="Ж" />
-            <label for="female">Ж</label>
-          </div>
-        </div>
-        <div class="form__age-male_border"></div>
+      <div class="form__second">
+        <input
+          type="number"
+          id="age"
+          formControlName="age"
+          placeholder="Возраст"
+        />
+        <input
+          type="tel"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          placeholder="Номер телефона"
+        />
+        <input
+          type="text"
+          id="adress"
+          formControlName="adress"
+          placeholder="Адрес"
+        />
       </div>
-      <div class="form__number-adress">
-        <label for="phoneNumber">Номер телефона:</label>
-        <input type="tel" id="phoneNumber" formControlName="phoneNumber" />
-        <label for="adress">Адрес:</label>
-        <input type="text" id="adress" formControlName="adress" />
+      <div class="form__age-male_male">
+        <label for="male">Пол:</label>
+        <div class="radio-container">
+          <input type="radio" id="male" formControlName="male" value="М" />
+          <label for="male">М</label>
+        </div>
+        <div class="radio-container">
+          <input type="radio" id="female" formControlName="male" value="Ж" />
+          <label for="female">Ж</label>
+        </div>
       </div>
 
-      <button type="submit">Сохранить</button>
+      <div class="btns">
+        <button type="submit" class="submit-btn">Сохранить</button>
+        <button type="button" class="close-btn" (click)="closeModal()">
+          Отмена
+        </button>
+      </div>
     </form>
   </div>
 </div>

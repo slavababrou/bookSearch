@@ -9,14 +9,15 @@
   width: 100%;
   height: 100vh;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(49, 51, 136, 0.41);
+  backdrop-filter: blur(5px);
   color: var(--text-color);
 }
 
 .modal-content {
+  border-radius: 12px;
   background-color: #fefefe;
-  padding: 20px;
+  padding: 60px;
   border: 1px solid #888;
   display: flex;
   flex-flow: column nowrap;
@@ -36,44 +37,21 @@
 .modal-content form input {
   padding: 10px 20px;
   border: 1px solid var(--background-color);
-}
-.modal-content form button {
-  padding: 12px 15px;
-  background: var(--background-color);
-  color: var(--text-color-light);
-  font-size: 16px;
+  border-radius: 4px;
 }
 
 .form__number-adress {
   display: flex;
-  flex-flow: column nowrap;
-}
-.form__number-adress input {
-  margin-bottom: 10px;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 .form__name,
-.form__age-male {
+.form__second {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-}
-.form__name {
   justify-content: space-between;
-}
-
-/* Закрыть кнопку */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+  width: 100%;
 }
 
 .form__age-male {
@@ -128,4 +106,36 @@
   height: 6px;
   border-radius: 50%;
   background: var(--background-color);
+}
+
+.btns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5vh;
+}
+.submit-btn {
+  padding: 12px 15px;
+  width: 50%;
+  border-radius: 4px;
+  background: var(--background-color);
+  color: var(--text-color-light);
+  font-size: 16px;
+  border: 1x solid white;
+}
+.submit-btn:hover,
+.close-btn:hover {
+  border: 1px solid var(--background-color);
+  color: var(--text-color);
+  background: var(--background-color-light);
+}
+.close-btn {
+  padding: 12px 15px;
+  border-radius: 4px;
+  width: 20%;
+  border: 1px solid white;
+  background: var(--background-color);
+  font-size: 16px;
+  color: var(--text-color-light);
 }

@@ -53,6 +53,10 @@ export class ChangeReaderComponent implements OnDestroy, OnInit {
       });
   }
 
+  closeModal() {
+    this.modalService.closeModal();
+  }
+
   ngOnDestroy(): void {
     this.destroySubject.next();
     this.destroySubject.complete();
