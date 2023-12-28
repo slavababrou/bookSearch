@@ -5,57 +5,78 @@
   align-items: center;
   width: 100%;
   height: 100vh;
+  background: url("../../../../assets/image/auth-bg.jpg") 1%;
+  background-size: cover;
 }
 
 .login__form {
   display: flex;
   flex-flow: column nowrap;
   padding: 40px;
-  box-shadow: 0 0 5px 1px rgba(128, 128, 128, 0.289);
+  box-shadow: 0 0 5px 1px rgba(128, 128, 128, 0.189);
   gap: 50px;
   width: 340px;
+  background: rgba(49, 51, 136, 0.21);
+  backdrop-filter: blur(102px);
+  border-radius: 25px;
+  border: 2px solid white;
 }
 .login__form h2 {
   align-self: center;
-  color: var(--text-color);
+  color: var(--text-color-light);
   font-size: 24px;
 }
 .login__form_fields {
   display: flex;
   flex-flow: column nowrap;
-  gap: 10px;
+  gap: 30px;
 }
 .login__form_fields input {
-  font-size: 12px;
+  font-size: 15px;
   padding: 10px 10px;
-  color: var(--text-color);
-  border-bottom: 1px solid var(--background-color-dark);
+  color: var(--text-color-light);
+  border-bottom: 2px solid var(--background-color-light);
 }
 .login__form_fields input::placeholder {
-  color: var(--text-color);
+  color: var(--text-color-light);
+  font-size: 15px;
 }
 .login__form_fields input:focus {
   color: var(--text-color-light);
-  background: var(--background-color);
 }
 
 .login__form_button {
   justify-self: center;
-  background: var(--background-color);
-  color: var(--text-color-light);
-  padding: 10px 10px;
+  background: var(--background-color-light);
+  color: rgba(29, 0, 248, 0.74);
+  border-radius: 25px;
+  padding: 10px 6px;
   font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
 }
 .login__form_button:hover {
-  background-color: var(--background-color-dark);
+  border: 2px solid white;
+  background: rgba(49, 51, 136, 0.21);
+  color: var(--text-color-light);
+  padding: 9px 6px 8px;
 }
 
 .login__form_bottom {
   display: flex;
   flex-flow: column nowrap;
-  gap: 5px;
+  gap: 30px;
 }
 
 .login__form_no-account {
+  color: var(--text-color-light);
   font-size: 12px;
+}
+.login__form_no-account a {
+  color: var(--text-color-light);
+  font-weight: bold;
+}
+
+.login__form_no-account a:hover {
+  border-bottom: 1px solid white;
 }
