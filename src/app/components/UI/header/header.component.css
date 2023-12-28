@@ -4,8 +4,11 @@
   padding: 0 5%;
   height: 80px;
   width: 100%;
-  color: var(--text-color);
   font-family: sans-serif;
+  position: fixed;
+  background: white;
+  box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 }
 .header__nav {
   width: 100%;
@@ -31,8 +34,8 @@
 
 .header__nav ul li a {
   text-decoration: none;
-  font-family: montserrat;
-  font-size: 12px;
+  font-size: 15px;
+  color: var(--text-color);
 }
 
 .header__nav ul li a:visited {

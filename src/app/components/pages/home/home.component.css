@@ -1,5 +1,5 @@
 .main {
-  padding: 160px 10% 300px;
+  padding: 20vh 10% 300px;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -39,6 +39,7 @@
   font-style: normal;
   font-weight: 900;
   width: 200px;
+  border-radius: 5px;
 }
 .main__left button:hover {
   background: var(--background-color-dark);

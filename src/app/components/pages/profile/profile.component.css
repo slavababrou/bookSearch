@@ -4,11 +4,11 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  padding: 10vh 0 20vh;
+  padding: 20vh 0 20vh;
   gap: 10px;
-  background: url("../../../../assets/image/auth-bg.jpg") 50%;
+  background: url("../../../../assets/image/auth-bg.jpg") 10%;
   background-size: cover;
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .profile__top {
@@ -18,7 +18,7 @@
   align-items: center;
 }
 .profile__avatar {
-  background: rgba(49, 51, 136, 0.21);
+  background: rgba(49, 51, 136, 0.11);
   backdrop-filter: blur(42px);
   background: url("../../../../assets/image/avatar-svgrepo-com.svg") 50% / cover
     no-repeat;
@@ -33,7 +33,7 @@
   display: flex;
   flex-flow: column nowrap;
   gap: 10px;
-  background: rgba(49, 51, 136, 0.21);
+  background: rgba(49, 51, 136, 0.71);
   backdrop-filter: blur(52px);
   padding: 20px;
   border-radius: 8px;
@@ -93,7 +93,7 @@
 }
 .profile__reader_name-wrapper {
   margin-top: 10px;
-  background: rgba(49, 51, 136, 0.21);
+  background: rgba(49, 51, 136, 0.41);
   backdrop-filter: blur(52px);
   padding: 10px 20px;
   border-radius: 8px;

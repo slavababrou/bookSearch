@@ -2,26 +2,30 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  min-width: 200px;
+  min-width: 450px;
   border-bottom: 1px solid rgba(105, 103, 100, 0.59);
   padding-bottom: 5px;
   font-family: montserrat;
-  gap: 10px;
+  gap: 30px;
+  border-radius: 8px;
+  padding: 13px 30px;
+  border: 1px solid rgba(49, 51, 136, 0.79);
   position: relative;
 }
 .book-search__form_button {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background: url("../../../assets/image/search.svg") center center no-repeat;
   background-size: cover;
 }
 
 .book-search__form_input {
-  font-size: 13px;
-  color: rgba(0, 0, 0, 0.35);
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.85);
 }
 .book-search__form_input::placeholder {
-  color: rgba(0, 0, 0, 0.35);
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .book-search__results {
@@ -35,7 +39,8 @@
   width: 100%;
   margin: 0 auto;
   padding-right: 5px;
-  background: rgb(72, 72, 72);
+  background: rgba(49, 51, 136, 0.35);
+  backdrop-filter: blur(5px);
   gap: 80px;
   padding: 50px 20px;
 }
