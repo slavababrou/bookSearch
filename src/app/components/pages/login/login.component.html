@@ -17,9 +17,22 @@
     </div>
     <div class="login__form_bottom">
       <button type="submit" class="login__form_button">Войти</button>
-      <span class="login__form_no-account"
-        >Нет аккаунта? <a routerLink="/register">Регистрация</a></span
-      >
+
+      <div class="login__form_bottom_bottom-wrapper">
+        <span class="login__form_no-account"
+          >Нет аккаунта? <a routerLink="/register">Регистрация</a></span
+        >
+        <label class="login__form_bottom_rememberMe-wrapper">
+          Запомнить меня
+          <input
+            [(ngModel)]="rememberMe"
+            name="rememberMe"
+            type="checkbox"
+            checked="{rememberMe}"
+            onChange="{handleRememberMeChange}"
+          />
+        </label>
+      </div>
     </div>
   </form>
 </div>

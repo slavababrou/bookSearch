@@ -18,7 +18,7 @@
   width: 340px;
   background: rgba(49, 51, 136, 0.21);
   backdrop-filter: blur(102px);
-  border-radius: 25px;
+  border-radius: 16px;
   border: 2px solid white;
 }
 .login__form h2 {
@@ -48,7 +48,7 @@
   justify-self: center;
   background: var(--background-color-light);
   color: rgba(29, 0, 248, 0.74);
-  border-radius: 25px;
+  border-radius: 8px;
   padding: 10px 6px;
   font-size: 16px;
   font-weight: bold;
@@ -58,7 +58,7 @@
   border: 2px solid white;
   background: rgba(49, 51, 136, 0.21);
   color: var(--text-color-light);
-  padding: 9px 6px 8px;
+  padding: 8px 6px 8px;
 }
 
 .login__form_bottom {
@@ -78,4 +78,17 @@
 
 .login__form_no-account a:hover {
   border-bottom: 1px solid white;
+}
+.login__form_bottom_rememberMe-wrapper {
+  color: var(--text-color-light);
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.login__form_bottom_bottom-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
 }

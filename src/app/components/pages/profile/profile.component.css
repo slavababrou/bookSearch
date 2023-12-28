@@ -5,7 +5,10 @@
   flex-flow: column nowrap;
   align-items: center;
   padding: 10vh 0 20vh;
-  gap: 50px;
+  gap: 10px;
+  background: url("../../../../assets/image/auth-bg.jpg") 50%;
+  background-size: cover;
+  height: calc(100vh - 80px);
 }
 
 .profile__top {
@@ -14,30 +17,38 @@
   gap: 40px;
   align-items: center;
 }
-
 .profile__avatar {
-  background: url("../../../../assets/image/header_avatar.png") 50% / cover
+  background: rgba(49, 51, 136, 0.21);
+  backdrop-filter: blur(42px);
+  background: url("../../../../assets/image/avatar-svgrepo-com.svg") 50% / cover
     no-repeat;
   width: 240px;
   height: 300px;
-  border-radius: 30%;
+  border-radius: 16px;
   align-self: center;
+  border: 2px solid white;
 }
-
 .profile__info_left,
 .profile__info_right {
   display: flex;
   flex-flow: column nowrap;
   gap: 10px;
+  background: rgba(49, 51, 136, 0.21);
+  backdrop-filter: blur(52px);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.548);
+  font-size: 13px;
 }
 
 .info__wrapper {
   display: flex;
   flex-flow: column nowrap;
+  color: var(--text-color-light);
 }
 
 .info__title {
-  color: var(--text-color);
+  color: var(--text-color-light);
   font-size: 14px;
   font-weight: bold;
 }
@@ -48,26 +59,46 @@
 .profile__buttons {
   display: flex;
   flex-flow: row nowrap;
-  gap: 20px;
+  gap: 30px;
+
+  background: rgba(49, 51, 136, 0.21);
+  backdrop-filter: blur(42px);
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-top: 40px;
 }
 .profile__buttons button {
   padding: 10px 15px;
-  background: var(--background-color);
-  color: var(--text-color-light);
-  border-radius: 4px;
-  box-shadow: 0 0 5px 1px #22222280;
+  background: var(--background-color-light);
+  color: var(--text-color);
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid white;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
 
 .profile__buttons button:hover {
-  background: var(--background-color-dark);
+  background: rgba(0, 0, 0, 0);
+  color: var(--text-color-light);
 }
 .profile__avatar-name {
   display: flex;
   flex-flow: column nowrap;
 }
 .profile__reader_name {
-  margin-top: 10px;
   font-size: 18px;
-  text-align: center;
-  color: var(--text-color);
+  color: var(--text-color-light);
+  margin: 0;
+}
+.profile__reader_name-wrapper {
+  margin-top: 10px;
+  background: rgba(49, 51, 136, 0.21);
+  backdrop-filter: blur(52px);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
 }

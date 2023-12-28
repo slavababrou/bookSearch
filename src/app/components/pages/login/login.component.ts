@@ -19,6 +19,7 @@ import { ReaderService } from '../../../services/reader.service';
 export class LoginComponent implements OnDestroy {
   username: string = '';
   password: string = '';
+  rememberMe: boolean = true;
 
   destrouSubject = new Subject<void>();
 

@@ -11,15 +11,6 @@
     </div>
     <div class="profile__avatar-name">
       <div class="profile__avatar"></div>
-      <h3 class="profile__reader_name">
-        {{
-          (reader?.lastName || "") +
-            " " +
-            (reader?.firstName || "") +
-            " " +
-            (reader?.middleName || "")
-        }}
-      </h3>
     </div>
 
     <div class="profile__info_right">
@@ -31,6 +22,27 @@
         <span class="info__title">Адрес</span
         ><span class="info__adress">{{ reader?.adress || "Не задан" }}</span>
       </div>
+      <div class="info__wrapper">
+        <span class="info__title">Возраст</span
+        ><span class="info__age">{{ reader?.age || "Не задан" }}</span>
+      </div>
+      <div class="info__wrapper">
+        <span class="info__title">Пол</span
+        ><span class="info__age">{{ reader?.male || "Не задан" }}</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="profile__reader_name-wrapper">
+      <h3 class="profile__reader_name">
+        {{
+          (reader?.lastName || "") +
+            " " +
+            (reader?.firstName || "") +
+            " " +
+            (reader?.middleName || "")
+        }}
+      </h3>
     </div>
   </div>
 
