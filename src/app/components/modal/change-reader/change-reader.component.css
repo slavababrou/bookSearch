@@ -1,4 +1,4 @@
-.modal {
+.modal__change-reader {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -138,4 +138,10 @@
   background: var(--background-color);
   font-size: 16px;
   color: var(--text-color-light);
+}
+
+.changeReader {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 40px;
 }

@@ -1,18 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { ReaderService } from './../../../services/reader.service';
-import { User } from '../../../models/user';
-import { Reader } from '../../../models/reader';
-import { CommonModule } from '@angular/common';
-import { ChangeReaderComponent } from '../../modal/change-reader/change-reader.component';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { User } from '../../../models/user';
+import { CommonModule } from '@angular/common';
+import { Reader } from '../../../models/reader';
+import { AuthService } from '../../../services/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
+import { ReaderService } from './../../../services/reader.service';
+import { ChangeReaderComponent } from '../../modal/change-reader/change-reader.component';
+import { ChangePasswordComponent } from '../../modal/change-password/change-password.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ChangeReaderComponent],
+  imports: [CommonModule, ChangeReaderComponent, ChangePasswordComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -30,12 +31,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private modalService: ModalService
   ) {}
 
-  logout() {
-    this.authService.logout();
-    this.readerService.logoutReader();
-    this.router.navigate(['/']);
-  }
-
   ngOnInit(): void {
     this.authService
       .getUser()
@@ -52,6 +47,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public openModal() {
     this.modalService.openModal();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.readerService.logoutReader();
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {

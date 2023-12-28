@@ -64,4 +64,23 @@ export class AuthService {
       }
     );
   }
+
+  changePassword(
+    oldPassword: string,
+    newFirstPassword: string,
+    newSecondPassword: string
+  ) {
+    const token: string | null = localStorage.getItem('accessToken');
+    if (token) {
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.http.put<{ response: string }>(
+        `${this.apiUrl}`,
+        { oldPassword, newFirstPassword, newSecondPassword },
+        {
+          headers,
+        }
+      );
+    }
+    return;
+  }
 }

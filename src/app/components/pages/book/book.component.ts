@@ -6,6 +6,7 @@ import { BookService } from '../../../services/book.service';
 import { Subject, takeUntil } from 'rxjs';
 import { BooksPreviewRowComponent } from '../../UI/books-preview-row/books-preview-row.component';
 import { BooksService } from '../../../services/books.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-book',
@@ -13,6 +14,7 @@ import { BooksService } from '../../../services/books.service';
   imports: [CommonModule, BooksPreviewRowComponent],
   templateUrl: './book.component.html',
   styleUrl: './book.component.css',
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class BookComponent implements OnInit, OnDestroy {
   id: number | null = null;

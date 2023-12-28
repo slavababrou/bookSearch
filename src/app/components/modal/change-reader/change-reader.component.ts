@@ -1,5 +1,5 @@
-import { Reader } from './../../../models/reader';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Reader } from './../../../models/reader';
 import { ReaderService } from '../../../services/reader.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { ModalService } from '../../../services/modal.service';
 })
 export class ChangeReaderComponent implements OnDestroy, OnInit {
   reader: Reader | null = null;
-  readerForm!: FormGroup;
+  changeReaderForm!: FormGroup;
 
   destroySubject = new Subject<void>();
 
@@ -31,21 +31,23 @@ export class ChangeReaderComponent implements OnDestroy, OnInit {
       .pipe(takeUntil(this.destroySubject))
       .subscribe((reader) => (this.reader = reader));
 
-    this.readerForm = this.formBuilder.group({
-      firstName: [this.reader?.firstName],
-      lastName: [this.reader?.lastName],
-      middleName: [this.reader?.middleName],
-      phoneNumber: [this.reader?.phoneNumber],
-      male: [this.reader?.male],
-      age: [this.reader?.age],
-      adress: [this.reader?.adress],
-      id: [this.reader?.id],
+    this.changeReaderForm = this.formBuilder.group({
+      changeReader: this.formBuilder.group({
+        firstName: [this.reader?.firstName],
+        lastName: [this.reader?.lastName],
+        middleName: [this.reader?.middleName],
+        phoneNumber: [this.reader?.phoneNumber],
+        male: [this.reader?.male],
+        age: [this.reader?.age],
+        adress: [this.reader?.adress],
+        id: [this.reader?.id],
+      }),
     });
   }
 
   submitHandler() {
     this.readerService
-      .updateReader(this.readerForm.value)
+      .updateReader(this.changeReaderForm.value.changeReader)
       .pipe(takeUntil(this.destroySubject))
       .subscribe((reader) => {
         this.readerService.setReader(reader);

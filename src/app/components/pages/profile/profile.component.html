@@ -48,11 +48,12 @@
 
   <div class="profile__bottom">
     <div class="profile__buttons">
-      <button>Изменить пароль</button>
+      <button (click)="openModal()">Изменить пароль</button>
       <button (click)="openModal()">Редактировать</button>
       <button (click)="logout()">Выйти</button>
     </div>
   </div>
 
   <app-change-reader *ngIf="isModalOpen"></app-change-reader>
+  <app-change-password *ngIf="isModalOpen"></app-change-password>
 </div>

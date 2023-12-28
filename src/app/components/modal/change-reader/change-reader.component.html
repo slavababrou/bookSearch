@@ -1,64 +1,65 @@
-<div class="modal">
+<div class="modal__change-reader">
   <div class="modal-content">
     <h2>Информация о читателе</h2>
     <form
-      [formGroup]="readerForm"
+      [formGroup]="changeReaderForm"
       (ngSubmit)="submitHandler()"
       class="modal-content__form"
     >
-      <div class="form__name">
-        <input
-          type="text"
-          id="firstName"
-          placeholder="Имя"
-          formControlName="firstName"
-        />
-        <input
-          type="text"
-          id="lastName"
-          formControlName="lastName"
-          placeholder="Фамилия"
-        />
-        <input
-          type="text"
-          id="middleName"
-          formControlName="middleName"
-          placeholder="Отчество"
-        />
-      </div>
-
-      <div class="form__second">
-        <input
-          type="number"
-          id="age"
-          formControlName="age"
-          placeholder="Возраст"
-        />
-        <input
-          type="tel"
-          id="phoneNumber"
-          formControlName="phoneNumber"
-          placeholder="Номер телефона"
-        />
-        <input
-          type="text"
-          id="adress"
-          formControlName="adress"
-          placeholder="Адрес"
-        />
-      </div>
-      <div class="form__age-male_male">
-        <label for="male">Пол:</label>
-        <div class="radio-container">
-          <input type="radio" id="male" formControlName="male" value="М" />
-          <label for="male">М</label>
+      <div formGroupName="changeReader" class="changeReader">
+        <div class="form__name">
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Имя"
+            formControlName="firstName"
+          />
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Фамилия"
+          />
+          <input
+            type="text"
+            id="middleName"
+            formControlName="middleName"
+            placeholder="Отчество"
+          />
         </div>
-        <div class="radio-container">
-          <input type="radio" id="female" formControlName="male" value="Ж" />
-          <label for="female">Ж</label>
+
+        <div class="form__second">
+          <input
+            type="number"
+            id="age"
+            formControlName="age"
+            placeholder="Возраст"
+          />
+          <input
+            type="tel"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Номер телефона"
+          />
+          <input
+            type="text"
+            id="adress"
+            formControlName="adress"
+            placeholder="Адрес"
+          />
+        </div>
+        <div class="form__age-male_male">
+          <label for="male">Пол:</label>
+          <div class="radio-container">
+            <input type="radio" id="male" formControlName="male" value="М" />
+            <label for="male">М</label>
+          </div>
+          <div class="radio-container">
+            <input type="radio" id="female" formControlName="male" value="Ж" />
+            <label for="female">Ж</label>
+          </div>
         </div>
       </div>
-
       <div class="btns">
         <button type="submit" class="submit-btn">Сохранить</button>
         <button type="button" class="close-btn" (click)="closeModal()">
