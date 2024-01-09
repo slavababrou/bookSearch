@@ -23,21 +23,23 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'book/:id', component: BookComponent },
 
-      //  must be private
       {
         path: 'profile',
         component: ProfileComponent,
         canActivate: [AuthGuard],
+        data: { roles: ['reader', 'librarian'] },
       },
       {
         path: 'favorite',
         component: FavoriteComponent,
         canActivate: [AuthGuard],
+        data: { roles: ['reader', 'librarian'] },
       },
       {
         path: 'requests',
         component: AdminRequestsComponent,
         canActivate: [AuthGuard],
+        data: { roles: ['admin'] },
       },
     ],
   },

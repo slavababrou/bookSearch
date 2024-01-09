@@ -24,8 +24,15 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const isLoggedIn = this.authService.isLoggedIn();
+    const role = this.authService.getRole();
+
     if (isLoggedIn) {
-      return true;
+      if (next.data['roles'].includes(role)) return true;
+      else {
+        alert('У вашей роли нет доступа к этой странице!');
+        this.router.navigate(['/']);
+        return false;
+      }
     } else {
       alert('Для данной страницы требуется авторизоваться!');
       this.router.navigate(['/login']);

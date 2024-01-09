@@ -25,6 +25,20 @@ export class AuthService {
     return !!this.user.getValue();
   }
 
+  getRole() {
+    const user = this.user.getValue();
+    switch (user?.roleId) {
+      case 1:
+        return 'admin';
+      case 2:
+        return 'librarian';
+      case 3:
+        return 'reader';
+      default:
+        return 'guest';
+    }
+  }
+
   login(username: string, password: string) {
     return this.http.post<{
       token: string;
