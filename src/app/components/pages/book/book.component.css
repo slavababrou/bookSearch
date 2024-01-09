@@ -1,7 +1,7 @@
 .book__component {
   display: flex;
   flex-flow: column nowrap;
-  padding: 5%;
+  padding: 20vh 5%;
   width: 100%;
   margin-bottom: 15vh;
 }

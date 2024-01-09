@@ -1,3 +1,4 @@
+import { AccountDeleteRequestService } from './../../../services/account-delete-request.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from '../../../models/user';
@@ -28,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private readerService: ReaderService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private accountDeleteRequestService: AccountDeleteRequestService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public openModal() {
     this.modalService.openModal();
+  }
+
+  public deleteAccount() {
+    if (confirm('Отправить запрос на удаление аккаунта?') && this.user) {
+      this.accountDeleteRequestService
+        .createRequest(this.user.id)
+        .pipe(takeUntil(this.destroySubject))
+        .subscribe((response) => {
+          alert('Запрос успешно создан!');
+          this.accountDeleteRequestService.pushDeleteRequest(response);
+        });
+    }
   }
 
   logout() {

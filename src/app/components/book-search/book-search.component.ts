@@ -5,11 +5,12 @@ import { BookCardComponent } from '../UI/book-card/book-card.component';
 import { Book } from '../../models/book';
 import { Subject, takeUntil } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book-search',
   standalone: true,
-  imports: [CommonModule, BookCardComponent, FormsModule],
+  imports: [CommonModule, BookCardComponent, FormsModule, RouterLink],
   templateUrl: './book-search.component.html',
   styleUrl: './book-search.component.css',
 })
@@ -32,8 +33,11 @@ export class BookSearchComponent implements OnDestroy {
   }
 
   onBlur() {
-    this.books = [];
-    this.query = '';
+    setTimeout(() => {
+      this.books = [];
+      this.query = '';
+    }, 100);
+    //
   }
 
   ngOnDestroy(): void {

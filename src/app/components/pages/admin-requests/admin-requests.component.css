@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  padding: 20vh 10%;
+  width: 100%;
+}
+
+.delete-account {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 100px;
+  align-items: center;
+  width: 100%;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #3333338e;
+}
+
+.delete-account h2 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.delete-account_list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.delete-acocunt_item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.item_info {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
+  align-items: center;
+}
+
+.item_btns {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
+  align-items: center;
+}

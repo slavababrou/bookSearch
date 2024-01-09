@@ -8,6 +8,8 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { LayoutComponent } from './components/layout/layout/layout.component';
 import { BookComponent } from './components/pages/book/book.component';
 import { FavoriteComponent } from './components/pages/favorite/favorite.component';
+import { AdminRequestsComponent } from './components/pages/admin-requests/admin-requests.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -17,11 +19,26 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'favorite', component: FavoriteComponent },
       { path: 'catalog', component: CatalogComponent },
       { path: 'about', component: AboutComponent },
       { path: 'book/:id', component: BookComponent },
+
+      //  must be private
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'favorite',
+        component: FavoriteComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'requests',
+        component: AdminRequestsComponent,
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];

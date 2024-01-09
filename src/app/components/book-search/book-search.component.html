@@ -4,7 +4,7 @@
     <input
       [(ngModel)]="query"
       [ngModelOptions]="{ standalone: true }"
-      (blur)="onBlur()"
+      (focusout)="onBlur()"
       (ngModelChange)="onInput()"
       class="book-search__form_input"
       type="text"
@@ -13,7 +13,9 @@
   </form>
   <div class="book-search__results" *ngIf="books.length > 0">
     <div class="results_item" *ngFor="let book of books">
-      <app-book-card [book]="book"></app-book-card>
+      <a routerLink="/book/:{{ book.id }}"
+        ><app-book-card [book]="book"></app-book-card
+      ></a>
     </div>
   </div>
 </div>

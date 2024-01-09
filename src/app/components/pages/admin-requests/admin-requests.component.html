@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="delete-account" *ngIf="deleteAccountRequests?.length">
+    <h2>Запросы на удаление аккаунта</h2>
+
+    <div class="delete-account_list">
+      <div
+        class="delete-acocunt_item"
+        *ngFor="let accountDeleteRequest of deleteAccountRequests"
+      >
+        <div class="item_info">
+          <div>
+            <span>Id: {{ accountDeleteRequest.id }}</span>
+          </div>
+          <div>
+            <span>UserId: {{ accountDeleteRequest.userId }}</span>
+          </div>
+        </div>
+
+        <div class="item_btns">
+          <button (click)="acceptRequest(accountDeleteRequest.id)">
+            Принять
+          </button>
+          <button (click)="declineRequest(accountDeleteRequest.id)">
+            Отклонить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,7 +39,7 @@ export class BooksService {
   fetchNewBooks() {
     return this.http.get<Book[]>(`${this.newBookApiUrl}`, {
       params: {
-        limit: 5,
+        limit: 4,
         page: 1,
       },
     });
@@ -48,7 +48,7 @@ export class BooksService {
   fetchPopularBooks() {
     return this.http.get<Book[]>(`${this.popularBookApiUrl}`, {
       params: {
-        limit: 5,
+        limit: 4,
         page: 1,
       },
     });
@@ -57,7 +57,7 @@ export class BooksService {
   fetchSameBooks() {
     return this.http.get<Book[]>(`${this.popularBookApiUrl}`, {
       params: {
-        limit: 5,
+        limit: 4,
         page: 1,
       },
     });

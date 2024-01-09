@@ -45,11 +45,10 @@
       </div>
     </div>
   </section>
-  <section class="book__same-books">
+  <section class="book__same-books" *ngIf="sameBooks?.length">
     <app-books-preview-row
-      *ngIf="sameBooks"
       [title]="'Похожее'"
-      [books]="sameBooks"
+      [books]="sameBooks || []"
     ></app-books-preview-row>
   </section>
 </book>
