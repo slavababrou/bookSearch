@@ -46,3 +46,7 @@
   height: 34px;
   width: auto;
 }
+
+.btns_wrapper .aded path {
+  fill: #1976d2;
+}

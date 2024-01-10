@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Book } from '../../../models/book';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -12,18 +12,23 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.css',
 })
-export class BookCardComponent implements OnDestroy {
+export class BookCardComponent implements OnInit, OnDestroy {
   @Input() book!: Book;
+  isAded: boolean | null = null;
   destroySubject = new Subject<void>();
+
   constructor(private favoriteService: FavoriteService) {}
 
-  addFavorite() {
+  ngOnInit(): void {
     this.favoriteService
-      .addFavorite(1, this.book.id)
+      .getFavorite()
       .pipe(takeUntil(this.destroySubject))
-      .subscribe((resolve) => {
-        typeof resolve === 'string' ? alert(resolve) : 1;
-        //: this.favoriteService.pushFavorite(resolve);
+      .subscribe((favorites) => {
+        if (favorites)
+          this.isAded = favorites.some((favorite) => {
+            return favorite.bookId === this.book.id;
+          });
+        else this.isAded = false;
       });
   }
 

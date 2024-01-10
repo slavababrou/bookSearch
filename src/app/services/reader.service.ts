@@ -20,6 +20,10 @@ export class ReaderService {
     return this.reader.asObservable();
   }
 
+  getReaderId() {
+    return this.reader.getValue()?.id;
+  }
+
   logoutReader() {
     this.reader.next(null);
   }

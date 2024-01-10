@@ -1,1 +1,8 @@
-<p>favorite works!</p>
+<div class="container">
+  <div>
+    <app-books-preview-row
+      [title]="'Избранное'"
+      [books]="favoriteBooks || []"
+    ></app-books-preview-row>
+  </div>
+</div>

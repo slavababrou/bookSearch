@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  private newBooks: Book[] | undefined;
-  private popularBooks: Book[] | undefined;
-  private sameBooks: Book[] | undefined;
+  private newBooks!: Book[];
+  private popularBooks!: Book[];
+  private sameBooks!: Book[];
+  private favoriteBooks = new BehaviorSubject<Book[] | null>(null);
 
+  private apiUrl = 'http://localhost:3192/api/book';
   private newBookApiUrl = 'http://localhost:3192/api/new-book';
   private popularBookApiUrl = 'http://localhost:3192/api/popular-book';
   private sameBookApiUrl = 'http://localhost:3192/api/same-book';
@@ -34,6 +36,13 @@ export class BooksService {
   }
   getSameBooks() {
     return this.sameBooks;
+  }
+
+  setFavoriteBooks(favoriteBooks: Book[]) {
+    this.favoriteBooks.next(favoriteBooks);
+  }
+  getFavoriteBooks() {
+    return this.favoriteBooks.asObservable();
   }
 
   fetchNewBooks() {
@@ -61,5 +70,11 @@ export class BooksService {
         page: 1,
       },
     });
+  }
+
+  fetchBooksById(ids: number[]) {
+    return this.http.get<Book[]>(
+      `${this.apiUrl}/getBooksById?ids=${ids.join('&ids=')}`
+    );
   }
 }

@@ -1,3 +1,5 @@
+import { FavoriteService } from './../../../services/favorite.service';
+import { ReaderService } from './../../../services/reader.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -26,7 +28,9 @@ export class BookComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private bookService: BookService,
-    private booksService: BooksService
+    private booksService: BooksService,
+    private readerService: ReaderService,
+    private favoriteService: FavoriteService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +51,28 @@ export class BookComponent implements OnInit, OnDestroy {
             .subscribe((books: Book[]) => (this.sameBooks = books));
         }
       });
+  }
+
+  addFavorite() {
+    let readerId;
+    this.readerService
+      .getReader()
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe((reader) => {
+        if (reader) readerId = reader.id;
+      });
+
+    if (readerId && this.id)
+      this.favoriteService
+        .addFavorite(readerId, this.id)
+        .pipe(takeUntil(this.destroySubject))
+        .subscribe((newFavorite) => {
+          if (typeof newFavorite === 'number') {
+            this.favoriteService.deleteFavorite(newFavorite);
+          } else {
+            this.favoriteService.pushFavorite(newFavorite);
+          }
+        });
   }
 
   ngOnDestroy(): void {

@@ -1,12 +1,51 @@
-import { Component } from '@angular/core';
+import { ReaderService } from './../../../services/reader.service';
+import { BooksService } from './../../../services/books.service';
+import { Subject, takeUntil } from 'rxjs';
+import { Favorite } from '../../../models/favorite';
+import { FavoriteService } from './../../../services/favorite.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BooksPreviewRowComponent } from '../../UI/books-preview-row/books-preview-row.component';
+import { Book } from '../../../models/book';
 
 @Component({
   selector: 'app-favorite',
   standalone: true,
-  imports: [],
+  imports: [BooksPreviewRowComponent],
   templateUrl: './favorite.component.html',
-  styleUrl: './favorite.component.css'
+  styleUrl: './favorite.component.css',
 })
-export class FavoriteComponent {
+export class FavoriteComponent implements OnInit, OnDestroy {
+  favorites: Favorite[] | null = null;
+  favoriteBooks: Book[] | null = null;
+  destroySubject = new Subject<void>();
 
+  constructor(
+    private favoriteService: FavoriteService,
+    private booksService: BooksService,
+    private readerService: ReaderService
+  ) {}
+
+  ngOnInit(): void {
+    this.favoriteService
+      .fetchFavorite(this.readerService.getReaderId()!)
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe((favorites) => {
+        if (favorites) {
+          this.favorites = favorites;
+          this.favoriteService.setFavorite(favorites);
+          this.booksService
+            .fetchBooksById(favorites?.map((favorite) => favorite.bookId))
+            .pipe(takeUntil(this.destroySubject))
+            .subscribe((response) => {
+              this.booksService.setFavoriteBooks(response);
+              this.favoriteBooks = response;
+            });
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubject.next();
+    this.destroySubject.complete();
+  }
 }
