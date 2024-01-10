@@ -1,4 +1,3 @@
-import { ReaderService } from './../../../services/reader.service';
 import { BooksService } from './../../../services/books.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Favorite } from '../../../models/favorite';
@@ -21,18 +20,15 @@ export class FavoriteComponent implements OnInit, OnDestroy {
 
   constructor(
     private favoriteService: FavoriteService,
-    private booksService: BooksService,
-    private readerService: ReaderService
+    private booksService: BooksService
   ) {}
 
   ngOnInit(): void {
     this.favoriteService
-      .fetchFavorite(this.readerService.getReaderId()!)
+      .getFavorite()
       .pipe(takeUntil(this.destroySubject))
       .subscribe((favorites) => {
         if (favorites) {
-          this.favorites = favorites;
-          this.favoriteService.setFavorite(favorites);
           this.booksService
             .fetchBooksById(favorites?.map((favorite) => favorite.bookId))
             .pipe(takeUntil(this.destroySubject))

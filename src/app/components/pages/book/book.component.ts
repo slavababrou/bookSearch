@@ -1,6 +1,6 @@
 import { FavoriteService } from './../../../services/favorite.service';
 import { ReaderService } from './../../../services/reader.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Book } from '../../../models/book';
@@ -9,11 +9,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { BooksPreviewRowComponent } from '../../UI/books-preview-row/books-preview-row.component';
 import { BooksService } from '../../../services/books.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FavoriteButtonComponent } from '../../UI/favorite-button/favorite-button.component';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [CommonModule, BooksPreviewRowComponent],
+  imports: [CommonModule, BooksPreviewRowComponent, FavoriteButtonComponent],
   templateUrl: './book.component.html',
   styleUrl: './book.component.css',
   schemas: [NO_ERRORS_SCHEMA],
@@ -30,7 +31,8 @@ export class BookComponent implements OnInit, OnDestroy {
     private bookService: BookService,
     private booksService: BooksService,
     private readerService: ReaderService,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,8 @@ export class BookComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroySubject))
       .subscribe((params) => {
         this.id = +params['id'].slice(1);
+
+        window.scrollTo(0, 0);
 
         if (this.id) {
           this.bookService

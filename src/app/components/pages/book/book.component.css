@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .book__component {
   display: flex;
   flex-flow: column nowrap;

@@ -22,8 +22,9 @@
           <a routerLink="/register">Регистрация</a>
         </li>
 
-        <li *ngIf="authService.isLoggedIn()">
+        <li class="favorites" *ngIf="authService.isLoggedIn()">
           <a class="header__favourites" routerLink="/favorite"></a>
+          <div class="favorite-count">{{ favoriteCount || "" }}</div>
         </li>
 
         <li *ngIf="authService.isLoggedIn()">

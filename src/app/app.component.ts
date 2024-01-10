@@ -1,3 +1,4 @@
+import { FavoriteService } from './services/favorite.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -17,7 +18,8 @@ import { Reader } from './models/reader';
 export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
-    private readerService: ReaderService
+    private readerService: ReaderService,
+    private favoriteService: FavoriteService
   ) {}
 
   destroySubject = new Subject<void>();
@@ -30,7 +32,15 @@ export class AppComponent implements OnInit, OnDestroy {
         if (response.user) {
           this.authService.setUser(response.user);
         }
-        if (response.reader) this.readerService.setReader(response.reader);
+        if (response.reader) {
+          this.readerService.setReader(response.reader);
+          this.favoriteService
+            .fetchFavorite(response.reader.id!)
+            .pipe(takeUntil(this.destroySubject))
+            .subscribe((favorites) => {
+              if (favorites) this.favoriteService.setFavorite(favorites);
+            });
+        }
       });
   }
 

@@ -78,10 +78,23 @@
   font-weight: 400;
   font-size: 12px;
 }
+
+.favorites {
+  position: relative;
+}
 .header__favourites {
   display: block;
   background: url("../../../../assets/image/heart.svg") no-repeat center;
   background-size: cover;
   width: 38px;
   height: 38px;
+}
+.favorite-count {
+  display: flex;
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  font-size: 12px;
+  color: var(--text-color);
+  font-weight: bold;
 }
