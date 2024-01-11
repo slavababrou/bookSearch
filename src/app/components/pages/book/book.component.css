@@ -51,6 +51,7 @@ html {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  gap: 30px;
 }
 .btn_available {
   background: #1976d2;

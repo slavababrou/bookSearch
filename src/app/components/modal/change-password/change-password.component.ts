@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ModalService } from '../../../services/modal.service';
 import { AuthService } from '../../../services/auth.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-change-password',
@@ -17,9 +17,9 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   destroySubject = new Subject<void>();
 
   constructor(
-    private modalService: ModalService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -36,11 +36,13 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
     this.authService
       .changePassword(oldPassword, newFirstPassword, newSecondPassword)
-      ?.pipe(takeUntil(this.destroySubject))
+      ?.pipe(
+        takeUntil(this.destroySubject),
+        finalize(() => this.closeModal())
+      )
       .subscribe({
         next: (response) => {
           alert(response?.message);
-          this.modalService.closeModal();
         },
         error: (err) => {
           alert(err.error.message);
@@ -49,7 +51,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
-    this.modalService.closeModal();
+    this.matDialog.closeAll();
   }
 
   ngOnDestroy(): void {

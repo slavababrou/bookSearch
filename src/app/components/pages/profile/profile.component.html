@@ -53,13 +53,10 @@
 
   <div class="profile__bottom">
     <div class="profile__buttons">
-      <button (click)="openModal()">Изменить пароль</button>
-      <button (click)="openModal()">Редактировать</button>
+      <button (click)="openModal('password')">Изменить пароль</button>
+      <button (click)="openModal('reader')">Редактировать</button>
       <button (click)="deleteAccount()">Удалить аккаунт</button>
       <button (click)="logout()">Выйти</button>
     </div>
   </div>
-
-  <app-change-reader *ngIf="isModalOpen"></app-change-reader>
-  <!-- <app-change-password *ngIf="isModalOpen"></app-change-password> -->
 </div>

@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
 import { Reader } from '../../../models/reader';
 import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ModalService } from '../../../services/modal.service';
 import { ReaderService } from './../../../services/reader.service';
 import { ChangeReaderComponent } from '../../modal/change-reader/change-reader.component';
 import { ChangePasswordComponent } from '../../modal/change-password/change-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -29,8 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private readerService: ReaderService,
     private router: Router,
-    private modalService: ModalService,
-    private accountDeleteRequestService: AccountDeleteRequestService
+    private accountDeleteRequestService: AccountDeleteRequestService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -42,13 +42,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .getReader()
       .pipe(takeUntil(this.destroySubject))
       .subscribe((reader) => (this.reader = reader));
-    this.modalService.isOpen$
-      .pipe(takeUntil(this.destroySubject))
-      .subscribe((isModalOpen) => (this.isModalOpen = isModalOpen));
   }
 
-  public openModal() {
-    this.modalService.openModal();
+  public openModal(type: string) {
+    if (type === 'password') this.matDialog.open(ChangePasswordComponent);
+    else if (type === 'reader') this.matDialog.open(ChangeReaderComponent);
   }
 
   public deleteAccount() {

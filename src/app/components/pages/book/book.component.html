@@ -19,10 +19,7 @@
         </p>
         <div class="book__info_top_right_buttons">
           <button class="btn_available"><span>ДОСТУПНА</span></button>
-          <app-favorite-button
-            (click)="addFavorite()"
-            [bookId]="id || 0"
-          ></app-favorite-button>
+          <app-favorite-button [bookId]="id || 0"></app-favorite-button>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { ReaderService } from '../../../services/reader.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { ModalService } from '../../../services/modal.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-change-reader',
@@ -21,8 +21,8 @@ export class ChangeReaderComponent implements OnDestroy, OnInit {
 
   constructor(
     private readerService: ReaderService,
-    private modalService: ModalService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,12 +51,12 @@ export class ChangeReaderComponent implements OnDestroy, OnInit {
       .pipe(takeUntil(this.destroySubject))
       .subscribe((reader) => {
         this.readerService.setReader(reader);
-        this.modalService.closeModal();
+        this.closeModal();
       });
   }
 
   closeModal() {
-    this.modalService.closeModal();
+    this.matDialog.closeAll();
   }
 
   ngOnDestroy(): void {

@@ -3,6 +3,7 @@ import { Input } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FavoriteService } from '../../../services/favorite.service';
 import { CommonModule } from '@angular/common';
+import { ReaderService } from '../../../services/reader.service';
 
 @Component({
   selector: 'app-favorite-button',
@@ -16,7 +17,10 @@ export class FavoriteButtonComponent {
   isAded: boolean | null = null;
   destroySubject = new Subject<void>();
 
-  constructor(private favoriteService: FavoriteService) {}
+  constructor(
+    private favoriteService: FavoriteService,
+    private readerService: ReaderService
+  ) {}
 
   ngOnInit(): void {
     this.favoriteService
@@ -29,6 +33,28 @@ export class FavoriteButtonComponent {
           });
         else this.isAded = false;
       });
+  }
+
+  addFavorite() {
+    let readerId;
+    this.readerService
+      .getReader()
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe((reader) => {
+        if (reader) readerId = reader.id;
+      });
+
+    if (readerId && this.bookId)
+      this.favoriteService
+        .addFavorite(readerId, this.bookId)
+        .pipe(takeUntil(this.destroySubject))
+        .subscribe((newFavorite) => {
+          if (typeof newFavorite === 'number') {
+            this.favoriteService.deleteFavorite(newFavorite);
+          } else {
+            this.favoriteService.pushFavorite(newFavorite);
+          }
+        });
   }
 
   ngOnDestroy(): void {
