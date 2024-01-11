@@ -1,8 +1,12 @@
 <div class="container">
-  <div>
-    <app-books-preview-row
-      [title]="'Избранное'"
-      [books]="favoriteBooks || []"
-    ></app-books-preview-row>
+  <div class="favorite_wrapper">
+    <h2 class="favorites-h2">Избранное</h2>
+    <div class="favorite_list">
+      <app-books-preview-row
+        *ngFor="let books of favoriteBooksArray"
+        [title]="''"
+        [books]="books || []"
+      ></app-books-preview-row>
+    </div>
   </div>
 </div>

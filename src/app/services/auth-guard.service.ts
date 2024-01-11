@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
     const isLoggedIn = this.authService.isLoggedIn();
     const role = this.authService.getRole();
 
-    if (isLoggedIn) {
+    if (isLoggedIn && role) {
       if (next.data['roles'].includes(role)) return true;
       else {
         alert('У вашей роли нет доступа к этой странице!');
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
         return false;
       }
     } else {
-      alert('Для данной страницы требуется авторизоваться!');
+      alert('Для доступа к данной страницы требуется авторизоваться!');
       this.router.navigate(['/login']);
       return false;
     }

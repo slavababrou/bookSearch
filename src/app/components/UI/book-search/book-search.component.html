@@ -13,9 +13,7 @@
   </form>
   <div class="book-search__results" *ngIf="books.length > 0">
     <div class="results_item" *ngFor="let book of books">
-      <a routerLink="/book/:{{ book.id }}"
-        ><app-book-card [book]="book"></app-book-card
-      ></a>
+      <app-book-card [book]="book"></app-book-card>
     </div>
   </div>
 </div>

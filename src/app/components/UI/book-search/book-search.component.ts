@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy } from '@angular/core';
-import { BookService } from '../../services/book.service';
-import { BookCardComponent } from '../UI/book-card/book-card.component';
-import { Book } from '../../models/book';
+import { BookService } from '../../../services/book.service';
+import { BookCardComponent } from '../book-card/book-card.component';
+import { Book } from '../../../models/book';
 import { Subject, takeUntil } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -21,13 +21,15 @@ export class BookSearchComponent implements OnDestroy {
 
   constructor(private bookService: BookService) {}
 
+  //Prokol
   onInput() {
     if (this.query)
       this.bookService
         .searchBooks(this.query)
         .pipe(takeUntil(this.destroySubject))
         .subscribe((results) => {
-          this.books = results;
+          // -->
+          this.books = [...results, ...results, ...results];
         });
     else this.books = [];
   }
@@ -37,7 +39,6 @@ export class BookSearchComponent implements OnDestroy {
       this.books = [];
       this.query = '';
     }, 100);
-    //
   }
 
   ngOnDestroy(): void {

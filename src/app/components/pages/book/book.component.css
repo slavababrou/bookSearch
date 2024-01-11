@@ -66,3 +66,7 @@ html {
   height: 34px;
   width: auto;
 }
+.book__same-books {
+  width: 90%;
+  align-self: center;
+}

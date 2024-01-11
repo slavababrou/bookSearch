@@ -77,4 +77,14 @@ export class BooksService {
       `${this.apiUrl}/getBooksById?ids=${ids.join('&ids=')}`
     );
   }
+
+  splitArrayIntoChunksOfLen(arr: Book[], len: number) {
+    var chunks = [],
+      i = 0,
+      n = arr.length;
+    while (i < n) {
+      chunks.push(arr.slice(i, (i += len)));
+    }
+    return chunks;
+  }
 }

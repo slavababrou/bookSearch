@@ -1,4 +1,20 @@
 .container {
-  height: 100vh;
-  padding: 20vh 10%;
+  min-height: 100vh;
+  padding: 15vh 10%;
+}
+.favorite_wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.favorites-h2 {
+  color: var(--text-color);
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.favorite_list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 80px;
 }

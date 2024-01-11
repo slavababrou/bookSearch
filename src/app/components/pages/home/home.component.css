@@ -56,7 +56,8 @@
 .books-rows {
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: 20vh;
+  margin: 0 auto 20vh;
+  width: 80%;
   gap: 15vh;
 }
 

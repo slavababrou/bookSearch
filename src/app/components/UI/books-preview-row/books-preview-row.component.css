@@ -15,6 +15,6 @@
 .books-preview__book-wrapper {
   display: flex;
   flex-flow: row nowrap;
-  width: 80%;
+  width: 100%;
   justify-content: space-between;
 }

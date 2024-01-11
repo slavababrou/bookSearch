@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Input } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { FavoriteService } from '../../../services/favorite.service';
@@ -12,7 +18,7 @@ import { ReaderService } from '../../../services/reader.service';
   templateUrl: './favorite-button.component.html',
   styleUrl: './favorite-button.component.css',
 })
-export class FavoriteButtonComponent {
+export class FavoriteButtonComponent implements OnInit, OnDestroy, OnChanges {
   @Input() bookId!: number;
   isAded: boolean | null = null;
   destroySubject = new Subject<void>();
@@ -23,6 +29,10 @@ export class FavoriteButtonComponent {
   ) {}
 
   ngOnInit(): void {
+    this.updateIsAded();
+  }
+
+  updateIsAded() {
     this.favoriteService
       .getFavorite()
       .pipe(takeUntil(this.destroySubject))
@@ -55,6 +65,10 @@ export class FavoriteButtonComponent {
             this.favoriteService.pushFavorite(newFavorite);
           }
         });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['bookId']) this.updateIsAded();
   }
 
   ngOnDestroy(): void {

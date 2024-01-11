@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Reader } from '../models/reader';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
+import { AutoLogin } from '../models/autoLogin';
 
 @Injectable({
   providedIn: 'root',
@@ -56,16 +57,13 @@ export class AuthService {
     localStorage.clear();
   }
 
-  autoLogin() {
+  autoLogin(): Observable<AutoLogin | null> {
     const token: string | null = localStorage.getItem('accessToken');
     if (token) {
       const headers = { Authorization: `Bearer ${token}` };
-      return this.http.get<{ user: User; reader: Reader | undefined }>(
-        `${this.apiUrl}/auto-login`,
-        { headers }
-      );
+      return this.http.get<AutoLogin>(`${this.apiUrl}/auto-login`, { headers });
     }
-    return;
+    return of(null);
   }
 
   register(username: string, email: string, password: string) {

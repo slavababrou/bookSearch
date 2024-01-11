@@ -4,9 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ReaderService } from './services/reader.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { User } from './models/user';
 import { Reader } from './models/reader';
+
+import { takeUntil } from 'rxjs/operators';
+import { AutoLogin } from './models/autoLogin';
 
 @Component({
   selector: 'app-root',
@@ -27,19 +30,20 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authService
       .autoLogin()
-      ?.pipe(takeUntil(this.destroySubject))
-      .subscribe((response: { user: User; reader: Reader | undefined }) => {
-        if (response.user) {
+      .pipe(takeUntil(this.destroySubject))
+      .subscribe((response: AutoLogin | null) => {
+        if (response && response.user) {
           this.authService.setUser(response.user);
-        }
-        if (response.reader) {
-          this.readerService.setReader(response.reader);
-          this.favoriteService
-            .fetchFavorite(response.reader.id!)
-            .pipe(takeUntil(this.destroySubject))
-            .subscribe((favorites) => {
-              if (favorites) this.favoriteService.setFavorite(favorites);
-            });
+
+          if (response.reader) {
+            this.readerService.setReader(response.reader);
+            this.favoriteService
+              .fetchFavorite(response.reader.id!)
+              .pipe(takeUntil(this.destroySubject))
+              .subscribe((favorites) => {
+                if (favorites) this.favoriteService.setFavorite(favorites);
+              });
+          }
         }
       });
   }
