@@ -5,8 +5,6 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ReaderService } from './services/reader.service';
 import { Subject } from 'rxjs';
-import { User } from './models/user';
-import { Reader } from './models/reader';
 
 import { takeUntil } from 'rxjs/operators';
 import { AutoLogin } from './models/autoLogin';
@@ -34,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((response: AutoLogin | null) => {
         if (response && response.user) {
           this.authService.setUser(response.user);
-
           if (response.reader) {
             this.readerService.setReader(response.reader);
             this.favoriteService

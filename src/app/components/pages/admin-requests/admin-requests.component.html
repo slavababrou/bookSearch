@@ -1,5 +1,9 @@
 <div class="container">
-  <div class="delete-account" *ngIf="deleteAccountRequests?.length">
+  <button class="btn btn-logout cotainer-item" (click)="logout()">Выйти</button>
+  <div
+    class="delete-account cotainer-item"
+    *ngIf="deleteAccountRequests?.length"
+  >
     <h2>Запросы на удаление аккаунта</h2>
 
     <div class="delete-account_list">
@@ -17,14 +21,46 @@
         </div>
 
         <div class="item_btns">
-          <button (click)="acceptRequest(accountDeleteRequest.id)">
+          <button class="btn" (click)="acceptRequest(accountDeleteRequest.id)">
             Принять
           </button>
-          <button (click)="declineRequest(accountDeleteRequest.id)">
+          <button class="btn" (click)="declineRequest(accountDeleteRequest.id)">
             Отклонить
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="form-wrapper cotainer-item">
+    <h2>Создать библиотекаря</h2>
+
+    <form
+      [formGroup]="createLibrarianForm"
+      (ngSubmit)="createLibrarian()"
+      class="form__create-librarian"
+    >
+      <div class="form_fields">
+        <input
+          type="text"
+          id="username"
+          placeholder="username"
+          formControlName="username"
+        />
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="email"
+        />
+        <input
+          type="text"
+          id="password"
+          formControlName="password"
+          placeholder="password"
+        />
+      </div>
+      <button type="submit" class="btn">Создать</button>
+    </form>
   </div>
 </div>

@@ -42,7 +42,10 @@ export class LoginComponent implements OnDestroy {
           if (response && response.token && response.user) {
             localStorage.setItem('accessToken', response.token);
             this.authService.setUser(response.user);
-            this.router.navigate(['/']);
+
+            if (response.user.roleId === 1) this.router.navigate(['/requests']);
+            else if (response.user.roleId === 3) this.router.navigate(['/']);
+
             if (response.reader) this.readerService.setReader(response.reader);
           }
         }

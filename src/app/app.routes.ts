@@ -12,8 +12,21 @@ import { AdminRequestsComponent } from './components/pages/admin-requests/admin-
 import { AuthGuard } from './services/auth-guard.service';
 
 export const routes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+
+  {
+    path: 'requests',
+    component: AdminRequestsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] },
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -27,19 +40,13 @@ export const routes: Routes = [
         path: 'profile',
         component: ProfileComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['reader', 'librarian'] },
+        data: { roles: ['reader', 'librarian', 'admin'] },
       },
       {
         path: 'favorite',
         component: FavoriteComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['reader', 'librarian'] },
-      },
-      {
-        path: 'requests',
-        component: AdminRequestsComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['admin'] },
+        data: { roles: ['reader'] },
       },
     ],
   },

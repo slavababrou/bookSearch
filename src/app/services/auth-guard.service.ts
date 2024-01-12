@@ -27,8 +27,9 @@ export class AuthGuard implements CanActivate {
     const role = this.authService.getRole();
 
     if (isLoggedIn && role) {
-      if (next.data['roles'].includes(role)) return true;
-      else {
+      if (next.data['roles'].includes(role)) {
+        return true;
+      } else {
         alert('У вашей роли нет доступа к этой странице!');
         this.router.navigate(['/']);
         return false;
