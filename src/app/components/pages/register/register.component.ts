@@ -3,11 +3,12 @@ import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, finalize, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { ReaderService } from '../../../services/reader.service';
 import { User } from '../../../models/user';
 import { Reader } from '../../../models/reader';
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private readerService: ReaderService
+    private readerService: ReaderService,
+    private favoriteService: FavoriteService
   ) {}
 
   register() {
@@ -34,11 +36,20 @@ export class RegisterComponent implements OnDestroy {
       .register(this.username, this.email, this.password)
       .pipe(takeUntil(this.destrouSubject))
       .subscribe((response: { token: string; user: User; reader: Reader }) => {
-        if (response && response.token && response.user && response.reader) {
+        if (response && response.token && response.user) {
           localStorage.setItem('accessToken', response.token);
           this.authService.setUser(response.user);
-          this.readerService.setReader(response.reader);
-          this.router.navigate(['/']);
+
+          if (response.reader) {
+            this.readerService.setReader(response.reader);
+            this.favoriteService
+              .fetchFavorite(response.reader.id!)
+              .pipe(takeUntil(this.destrouSubject))
+              .subscribe((favorite) => {
+                this.favoriteService.setFavorite(favorite);
+                this.router.navigate(['/']);
+              });
+          }
         }
       });
   }

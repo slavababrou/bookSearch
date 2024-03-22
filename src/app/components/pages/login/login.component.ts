@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { User } from '../../../models/user';
 import { Reader } from '../../../models/reader';
 import { ReaderService } from '../../../services/reader.service';
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +27,11 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private readerService: ReaderService
+    private readerService: ReaderService,
+    private favoriteService: FavoriteService
   ) {}
 
-  login() {
+  login(): void {
     this.authService
       .login(this.username, this.password)
       .pipe(takeUntil(this.destrouSubject))
@@ -43,10 +45,16 @@ export class LoginComponent implements OnDestroy {
             localStorage.setItem('accessToken', response.token);
             this.authService.setUser(response.user);
 
-            if (response.user.roleId === 1) this.router.navigate(['/requests']);
-            else if (response.user.roleId === 3) this.router.navigate(['/']);
-
-            if (response.reader) this.readerService.setReader(response.reader);
+            if (response.reader) {
+              this.readerService.setReader(response.reader);
+              this.favoriteService
+                .fetchFavorite(response.reader.id!)
+                .pipe(takeUntil(this.destrouSubject))
+                .subscribe((favorite) => {
+                  this.favoriteService.setFavorite(favorite);
+                  this.router.navigate(['/']);
+                });
+            } else this.router.navigate(['/requests']);
           }
         }
       );

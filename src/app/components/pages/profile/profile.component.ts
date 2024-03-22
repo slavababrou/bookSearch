@@ -10,6 +10,7 @@ import { ReaderService } from './../../../services/reader.service';
 import { ChangeReaderComponent } from '../../modal/change-reader/change-reader.component';
 import { ChangePasswordComponent } from '../../modal/change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private readerService: ReaderService,
     private router: Router,
     private accountDeleteRequestService: AccountDeleteRequestService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private favoriteService: FavoriteService
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.logout();
     this.readerService.logoutReader();
+    this.favoriteService.setFavorite([]);
     this.router.navigate(['/']);
   }
 
