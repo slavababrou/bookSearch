@@ -1,15 +1,15 @@
 .books-preview {
   display: flex;
   flex-flow: column nowrap;
-  gap: 30px;
+  gap: 70px;
   align-items: center;
   width: 100%;
 }
 
 .books-preview__title {
-  font-size: 25px;
-  color: var(--text-color);
-  font-weight: 900;
+  font-size: 50px;
+  font-weight: 500;
+  font-family: sans-serif;
 }
 
 .books-preview__book-wrapper {

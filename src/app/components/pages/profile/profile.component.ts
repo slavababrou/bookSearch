@@ -5,17 +5,23 @@ import { User } from '../../../models/user';
 import { CommonModule } from '@angular/common';
 import { Reader } from '../../../models/reader';
 import { AuthService } from '../../../services/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ReaderService } from './../../../services/reader.service';
 import { ChangeReaderComponent } from '../../modal/change-reader/change-reader.component';
 import { ChangePasswordComponent } from '../../modal/change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FavoriteService } from '../../../services/favorite.service';
+import { ReaderInfoPipe } from '../../../pipes/reader-info.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ChangeReaderComponent, ChangePasswordComponent],
+  imports: [
+    CommonModule,
+    ChangeReaderComponent,
+    ChangePasswordComponent,
+    ReaderInfoPipe,
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })

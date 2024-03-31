@@ -1,22 +1,28 @@
 <div class="login">
-  <form class="login__form" (ngSubmit)="login()">
+  <form [formGroup]="loginForm" class="login__form" (ngSubmit)="login()">
     <h2>Авторизация</h2>
     <div class="login__form_fields">
       <input
-        [(ngModel)]="username"
+        formControlName="username"
         name="username"
         type="text"
         placeholder="Логин или email"
       />
       <input
-        [(ngModel)]="password"
+        formControlName="password"
         name="password"
         type="password"
         placeholder="Пароль"
       />
     </div>
     <div class="login__form_bottom">
-      <button type="submit" class="login__form_button">Войти</button>
+      <button
+        type="submit"
+        class="login__form_button"
+        [disabled]="!loginForm.valid"
+      >
+        Войти
+      </button>
 
       <div class="login__form_bottom_bottom-wrapper">
         <span class="login__form_no-account"
@@ -25,11 +31,10 @@
         <label class="login__form_bottom_rememberMe-wrapper">
           Запомнить меня
           <input
-            [(ngModel)]="rememberMe"
+            formControlName="rememberMe"
             name="rememberMe"
             type="checkbox"
-            checked="{rememberMe}"
-            onChange="{handleRememberMeChange}"
+            onChange="(handleRememberMeChange)"
           />
         </label>
       </div>

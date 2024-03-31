@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "alphabets";
+  src: url("assets/fonts/alphabets-by-chileans-abc-abc-normal-white.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Ggsans";
+  src: url("assets/fonts/ggsans-Normal.ttf")
+    format("opentype");
+}
+
 :root {
   --primary-color: #5d5fef;
   --secondary-color: #ffffff;

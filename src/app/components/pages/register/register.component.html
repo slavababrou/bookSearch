@@ -1,23 +1,52 @@
 <div class="login">
-  <form class="login__form" (ngSubmit)="register()">
+  <form class="login__form" [formGroup]="registerForm" (ngSubmit)="register()">
     <h2>Регистрация</h2>
     <div class="login__form_fields">
       <input
-        [(ngModel)]="username"
+        formControlName="username"
         name="username"
         type="text"
         placeholder="Имя пользователя"
       />
-      <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />
+      <div
+        *ngIf="
+          registerForm.get('username')?.hasError('usernameNotUnique') &&
+          registerForm.get('username')?.dirty
+        "
+        invalidControl
+      >
+        Username уже занят.
+      </div>
       <input
-        [(ngModel)]="password"
+        formControlName="email"
+        name="email"
+        type="text"
+        placeholder="Email"
+      />
+      <div
+        *ngIf="
+          registerForm.get('email')?.hasError('emailNotUnique') &&
+          registerForm.get('email')?.dirty
+        "
+        invalidControl
+      >
+        Email уже занят.
+      </div>
+      <input
+        formControlName="password"
         name="password"
         type="password"
         placeholder="Пароль"
       />
     </div>
     <div class="login__form_bottom">
-      <button type="submit" class="login__form_button">Регистрация</button>
+      <button
+        [disabled]="registerForm.invalid"
+        type="submit"
+        class="login__form_button"
+      >
+        Регистрация
+      </button>
       <span class="login__form_no-account"
         >Есть аккаунт? <a routerLink="/login">Войти</a></span
       >

@@ -52,6 +52,10 @@ export class AuthService {
     });
   }
 
+  setAccessToken(token: string) {
+    localStorage.setItem('accessToken', token);
+  }
+
   logout() {
     this.user.next(null);
     localStorage.clear();

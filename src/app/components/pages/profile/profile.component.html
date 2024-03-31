@@ -34,19 +34,19 @@
     <div class="profile__info_right">
       <div class="info__wrapper">
         <span class="info__title">Номер телефона</span
-        ><span>{{ reader?.phoneNumber || "Не задан" }}</span>
+        ><span>{{ reader?.phoneNumber | readerInfo }}</span>
       </div>
       <div class="info__wrapper">
         <span class="info__title">Адрес</span
-        ><span class="info__adress">{{ reader?.adress || "Не задан" }}</span>
+        ><span class="info__adress">{{ reader?.adress | readerInfo }}</span>
       </div>
       <div class="info__wrapper">
         <span class="info__title">Возраст</span
-        ><span class="info__age">{{ reader?.age || "Не задан" }}</span>
+        ><span class="info__age">{{ reader?.age | readerInfo }}</span>
       </div>
       <div class="info__wrapper">
         <span class="info__title">Пол</span
-        ><span class="info__age">{{ reader?.male || "Не задан" }}</span>
+        ><span class="info__age">{{ reader?.male | readerInfo }}</span>
       </div>
     </div>
   </div>
